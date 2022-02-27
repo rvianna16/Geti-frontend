@@ -17,7 +17,7 @@
       </a>
       <mat-nav-list class="sidenav-submenu -mt-3" *ngIf="showDropdownMenu">
         <div *ngFor="let sublink of link.children">
-          <a mat-list-item class="submenu-sublink">{{ sublink.label }}</a>
+          <a mat-list-item class="submenu-sublink" [routerLink]="sublink.route">{{ sublink.label }}</a>
         </div>
       </mat-nav-list>
     </div>

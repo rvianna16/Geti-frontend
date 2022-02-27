@@ -1,3 +1,45 @@
 a {
   @apply text-sm #{!important};
 }
+
+h2 {
+  @apply text-2xl mb-6 text-secondary #{!important};
+}
+
+//Botões
+
+.mat-button-disabled {
+  @apply cursor-not-allowed text-sm font-medium py-2 px-4 rounded #{!important};
+}
+
+.button-primary:not(.mat-button-disabled) {
+  @apply cursor-pointer text-sm font-medium bg-primary text-light py-2 px-4 rounded hover:bg-secondary duration-200 #{!important};
+}
+
+/* .button-secondary:not(.mat-button-disabled) {
+  @apply cursor-pointer text-sm font-medium bg-dark text-light py-2 px-4 rounded hover:bg-dark-up duration-200 #{!important};
+}
+
+.button-outline.mat-button-disabled,
+.button-text.mat-button-disabled {
+    @apply text-sm font-medium text-disable border border-disable py-2 px-4 rounded #{!important};
+}
+
+.button-outline:not(.mat-button-disabled) {
+    @apply cursor-pointer text-sm font-medium text-primary border border-dark-down py-2 px-4 rounded hover:bg-light-up duration-200 #{!important};
+}
+
+.button-text:not(.mat-button-disabled) {
+  @apply cursor-pointer text-sm shadow-none font-medium text-dark-down border border-transparent hover:border-dark hover:text-dark py-2 px-4 rounded duration-200 #{!important};
+} */
+
+//Tabela
+
+.table-th {
+  @apply bg-primary text-sm text-light font-medium #{!important};
+}
+
+.edit-icon,
+.delete-icon {
+  @apply text-primary opacity-50 cursor-pointer hover:opacity-80 transition #{!important};
+}

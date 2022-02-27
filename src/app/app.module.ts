@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { SidenavComponent } from './common/sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from './common/header/header.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { HeaderComponent } from './common/header/header.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

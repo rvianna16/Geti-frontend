@@ -1,16 +1,19 @@
 <div class="navbar-container" [class.navbar-mobile]="mobileQuery.matches">
-  <mat-toolbar>
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="text-dark">Geti</h1>
-  </mat-toolbar>
+  <div class="flex p-4">
+    <div class="flex items-center w-1/4">
+      <button mat-icon-button (click)="snav.toggle()" class="mr-2"><mat-icon>menu</mat-icon></button>
+      <h1 class="text-dark m-0 cursor-pointer" [routerLink]="'/'">Geti</h1>
+    </div>
+
+    <app-search class="w-2/4"></app-search>
+  </div>
 
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="mat-sidenav-content">
-      //routing module
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
 </div>
