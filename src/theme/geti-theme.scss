@@ -1,0 +1,53 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$geti-palette: (
+ 50: #e1f3f7,
+ 100: #b3e0ea,
+ 200: #85ccdd,
+ 300: #5eb8d1,
+ 400: #46a9ca,
+ 500: #349bc3,
+ 600: #2d8eb6,
+ 700: #237ca4,
+ 800: #216c90,
+ 900: #174d6f,
+
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+   400: rgba(black, 0.87)
+   // ... continues to 900
+ )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$geti-front-primary: mat.define-palette($geti-palette, 900);
+$geti-front-accent: mat.define-palette($geti-palette, 600);
+
+// The warn palette is optional (defaults to red).
+$geti-front-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$geti-front-theme: mat.define-light-theme((
+  color: (
+    primary: $geti-front-primary,
+    accent: $geti-front-accent,
+    warn: $geti-front-warn,
+  )
+));
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($geti-front-theme);
+
+
+
