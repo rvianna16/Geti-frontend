@@ -4,11 +4,13 @@ import { SearchComponent } from './components/search/search.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
     SearchComponent,
-    ButtonComponent
+    ButtonComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ButtonComponent } from './components/button/button.component';
   ],
   exports: [
     SearchComponent,
-    ButtonComponent
+    ButtonComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

@@ -3,13 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Colaborador } from './models/colaborador';
-
-const ELEMENT_DATA: Colaborador[] = [
-  {nome: 'Rodrigo Vianna', email: "rodrigo.silva@teste.com.br"},
-  {nome: 'ATeste', email: "teste@teste.com.br"},
-  {nome: 'BTeste', email: "Beste@teste.com.br"},
-];
-
+import { ColaboradoresService } from './service/colaboradores.service';
 
 @Component({
   selector: 'app-colaboradores',
@@ -18,13 +12,13 @@ const ELEMENT_DATA: Colaborador[] = [
 
 export class ColaboradoresComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'email', 'acoes'];
-  colaboradoresDataSource = new MatTableDataSource(ELEMENT_DATA);
+  colaboradoresDataSource: any = new MatTableDataSource();
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private colaboradoresService: ColaboradoresService
+    ) {}
 
-  test(event: any) {
-    console.log(event)
-  }
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -42,9 +36,14 @@ export class ColaboradoresComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obterColaboradores();
   }
 
   ngAfterViewInit() {
     this.colaboradoresDataSource.sort = this.sort;
+  }
+
+  obterColaboradores(){
+    this.colaboradoresService.obterColaboradores().subscribe((res: Colaborador[]) => this.colaboradoresDataSource = new MatTableDataSource(res));
   }
 }

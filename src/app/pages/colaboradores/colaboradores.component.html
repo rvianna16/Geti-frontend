@@ -4,8 +4,8 @@
     <app-button label="Novo Colaborador" icon="add_circle" class="-mr-2"></app-button>
   </div>
 
-    <div class="w-full bg-light p-5 rounded-t-lg mat-elevation-z1">
-      <app-search label="Buscar Colaborador" (onSearch)="test($event)"></app-search>
+    <div class="w-full bg-light p-5 rounded-t-xl mat-elevation-z1">
+      <app-search label="Buscar Colaborador"></app-search>
     </div>
     <table mat-table [dataSource]="colaboradoresDataSource" matSort (matSortChange)="announceSortChange($event)"
     class="mat-elevation-z1 w-full">
