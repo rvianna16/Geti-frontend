@@ -5,11 +5,14 @@
       <h1 class="text-dark m-0 cursor-pointer" [routerLink]="'/'">Geti</h1>
     </div>
 
-    <app-search class="w-2/4"></app-search>
+    <mat-form-field appearance="outline" class="w-2/4">
+      <input matInput placeholder="Buscar">
+      <mat-icon matSuffix class="text-primary">search</mat-icon>
+    </mat-form-field>
   </div>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="84" class="sidenav">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="mat-sidenav-content">

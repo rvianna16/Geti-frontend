@@ -2,6 +2,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { Colaborador } from './models/colaborador';
 import { ColaboradoresService } from './service/colaboradores.service';
 
@@ -39,11 +40,13 @@ export class ColaboradoresComponent implements OnInit {
     this.obterColaboradores();
   }
 
-  ngAfterViewInit() {
-    this.colaboradoresDataSource.sort = this.sort;
+  obterColaboradores(){
+    this.colaboradoresService.obterColaboradores().subscribe((res: Colaborador[]) => {
+      this.colaboradoresDataSource = new MatTableDataSource(res);
+      this.colaboradoresDataSource.sort = this.sort;
+    })
+
   }
 
-  obterColaboradores(){
-    this.colaboradoresService.obterColaboradores().subscribe((res: Colaborador[]) => this.colaboradoresDataSource = new MatTableDataSource(res));
-  }
+
 }
