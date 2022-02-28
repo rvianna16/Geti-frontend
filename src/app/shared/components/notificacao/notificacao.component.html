@@ -1,0 +1,8 @@
+<div class="notificacao-container">
+  <div
+  *ngFor="let notificacao of notificacoes"
+  [ngClass]="getType(notificacao)">
+    <div>{{notificacao.mensagem}}</div>
+    <mat-icon class="cursor-pointer text-light" (click)="remover(notificacao)">close</mat-icon>
+  </div>
+</div>

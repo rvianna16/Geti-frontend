@@ -5,12 +5,14 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { NotificacaoComponent } from './components/notificacao/notificacao.component';
 
 @NgModule({
   declarations: [
     SearchComponent,
     ButtonComponent,
-    LoaderComponent
+    LoaderComponent,
+    NotificacaoComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { LoaderComponent } from './components/loader/loader.component';
   exports: [
     SearchComponent,
     ButtonComponent,
-    LoaderComponent
+    LoaderComponent,
+    NotificacaoComponent
   ]
 })
 export class SharedModule { }

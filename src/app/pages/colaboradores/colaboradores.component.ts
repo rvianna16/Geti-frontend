@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { Colaborador } from './models/colaborador';
 import { ColaboradoresService } from './service/colaboradores.service';
 
@@ -17,7 +18,8 @@ export class ColaboradoresComponent implements OnInit {
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
-    private colaboradoresService: ColaboradoresService
+    private colaboradoresService: ColaboradoresService,
+    private notificacoesService: NotificacoesService
     ) {}
 
 
@@ -45,8 +47,5 @@ export class ColaboradoresComponent implements OnInit {
       this.colaboradoresDataSource = new MatTableDataSource(res);
       this.colaboradoresDataSource.sort = this.sort;
     })
-
   }
-
-
 }

@@ -1,0 +1,20 @@
+.notificacao-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px;
+  z-index: 200;
+}
+
+.notificacao {
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  margin: 8px;
+  padding: 24px;
+}
+
+.notificacao > div:nth-child(1) {
+  flex-grow: 1;
+}
+
