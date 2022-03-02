@@ -11,28 +11,38 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 //Material
 
+.mat-form-field,
 .mat-form-field .mat-form-field-label {
   font-size: 16px;
-  margin-top: 1px;
 }
 
-.mat-form-field-invalid.ng-touched.ng-invalid {
-  margin-bottom: 16px;
+.mat-error {
+  font-size: 14px;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-wrapper {
+.no-margin,
+.no-margin .mat-form-field-wrapper {
   margin: 0 !important;
+  padding: 0 !Important;
 }
 
-.mat-form-field,
+/* .mat-form-field-invalid.ng-touched.ng-invalid {
+  margin-bottom: 16px;
+} */
+
+/* .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0 !important;
+} */
+
+/* .mat-form-field,
 .mat-form-field-wrapper {
   padding-bottom: 0;
   margin: 0;
-}
+} */
 
-.mat-form-field-label-wrapper {
+/* .mat-form-field-label-wrapper {
   top: -1.4em;
-}
+} */
 
 .mat-sort-header-arrow {
   color: #fff;

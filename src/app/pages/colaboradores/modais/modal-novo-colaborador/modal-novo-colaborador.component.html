@@ -1,0 +1,24 @@
+<h2 mat-dialog-title class="modal-title flex items-center justify-between">
+  Novo Colaborador
+  <mat-icon mat-dialog-close class="cursor-pointer">close</mat-icon>
+  </h2>
+<div>
+  <form [formGroup]="colaboradorForm">
+    <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome">
+      <mat-error>O nome do colaborador deve ser informado</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
+      <mat-label required="true">E-mail</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="colaboradorForm.controls['email'].hasError('required')">O e-mail do colaborador deve ser informado</mat-error>
+      <mat-error *ngIf="colaboradorForm.controls['email'].hasError('email')">Digite um e-mail válido</mat-error>
+    </mat-form-field>
+  </form>
+
+  <div class="flex justify-end">
+    <app-button type="secondary" label="Voltar" (onClick)="fecharModal()"></app-button>
+    <app-button label="Salvar" class="-mr-2" [disabled]="colaboradorForm.invalid" (onClick)="salvarColaborador()"></app-button>
+  </div>
+</div>

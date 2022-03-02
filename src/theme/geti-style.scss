@@ -9,11 +9,15 @@ h2 {
 //Botões
 
 .mat-button-disabled {
-  @apply cursor-not-allowed text-sm font-medium py-2 px-4 rounded #{!important};
+  @apply cursor-not-allowed #{!important};
 }
 
 .button-primary:not(.mat-button-disabled) {
-  @apply cursor-pointer text-sm font-medium bg-primary text-light py-2 px-4 rounded hover:bg-secondary duration-200 #{!important};
+  @apply bg-primary text-light hover:bg-secondary duration-200 #{!important};
+}
+
+.button-secondary:not(.mat-button-disabled) {
+  @apply hover:bg-light-up duration-200 #{!important};
 }
 
 /* .button-secondary:not(.mat-button-disabled) {

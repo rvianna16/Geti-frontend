@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   template: `
   <button
+    (click)="onClick.emit($event)"
     mat-raised-button
     [ngClass]="classes"
     [disabled]="disabled">
@@ -14,8 +15,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ButtonComponent implements OnInit {
   @Input()
   label:string = 'Salvar'
+
   @Input()
   icon!: string;
+
+  @Output()
+  onClick = new EventEmitter<Event>()
 
   @Input()
   type: string = 'primary';
@@ -23,13 +28,17 @@ export class ButtonComponent implements OnInit {
   @Input()
   disabled: boolean = false;
 
+  @Input()
+  paddingY: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   get classes(): string[] {
-    return ['mr-2', `button-${this.type}`];
+    const paddingY = this.paddingY ? 'py-1' : '';
+    return ['mr-2', `button-${this.type}`, paddingY];
   }
 
 }

@@ -19,4 +19,10 @@ export class ColaboradoresService {
       map((response: any) => response.data)
     )
   }
+
+  salvarColaborador(colaborador: Colaborador): Observable<any> {
+    const url = `${this.apiUrl}colaboradores`;
+
+    return this.http.post(url, colaborador);
+  }
 }

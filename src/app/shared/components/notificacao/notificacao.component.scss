@@ -2,8 +2,8 @@
   position: fixed;
   right: 0;
   top: 0;
-  width: 300px;
-  z-index: 200;
+  width: 400px;
+  z-index: 2000;
 }
 
 .notificacao {
@@ -12,6 +12,7 @@
   display: flex;
   margin: 8px;
   padding: 24px;
+  z-index: 1000;
 }
 
 .notificacao > div:nth-child(1) {
