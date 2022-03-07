@@ -17,6 +17,7 @@ import { ColaboradoresService } from './service/colaboradores.service';
 export class ColaboradoresComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'email', 'acoes'];
   colaboradoresDataSource: any = new MatTableDataSource();
+  subscription!: Subscription;
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
@@ -62,5 +63,24 @@ export class ColaboradoresComponent implements OnInit {
         this.obterColaboradores();
       }
     });
+  }
+
+  excluirColaborador(id: string){
+    this.notificacoesService.addConfirmacao('Tem certeza que deseja excluir este colaborador ?').subscribe((estaConfirmado) => {
+      if(estaConfirmado){
+        this.colaboradoresService.removerColaborador(id).subscribe(
+          (sucess) => {
+            this.notificacoesService.notificarSucesso('Colaborador excluído com sucesso!');
+            this.obterColaboradores();
+          },
+          (error) => {
+            if(error.status == 400){
+              this.notificacoesService.notificarErro(error.error.errors[0]);
+            }else {
+              this.notificacoesService.notificarErro('Não foi possivel excluir o colaborador. Tente novamente mais tarde.');
+            }
+          });
+      }
+   });
   }
 }

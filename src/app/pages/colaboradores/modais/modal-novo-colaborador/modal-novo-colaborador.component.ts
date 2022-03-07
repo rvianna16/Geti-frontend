@@ -41,7 +41,11 @@ export class ModalNovoColaboradorComponent implements OnInit {
         this.dialogRef.close('Done!');
       },
       (error) => {
-        this.notificacoesService.notificarErro(error.error.errors[0])
+        if(error.status == 400){
+          this.notificacoesService.notificarErro(error.error.errors[0]);
+        }else {
+          this.notificacoesService.notificarErro('Não foi possivel adicionar o colaborador. Tente novamente mais tarde.');
+        }
       }
     )
   }

@@ -6,13 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NotificacaoComponent } from './components/notificacao/notificacao.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     SearchComponent,
     ButtonComponent,
     LoaderComponent,
-    NotificacaoComponent
+    NotificacaoComponent,
+    ConfirmComponent
   ],
   imports: [
     CommonModule,

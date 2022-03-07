@@ -1,0 +1,11 @@
+<h3 mat-dialog-title class="mt-0 flex items-center justify-between">
+  Confirmação
+  <mat-icon mat-dialog-close class="cursor-pointer">close</mat-icon>
+</h3>
+<div>
+  <p>{{ data }}</p>
+  <div class="-mr-2 mt-6 flex justify-end">
+    <app-button type="secondary" label="Não" (onClick)="fecharModal()"></app-button>
+    <app-button label="Sim" (onClick)="confirmar()"></app-button>
+  </div>
+</div>

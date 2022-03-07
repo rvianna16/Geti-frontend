@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import { NotificacoesService } from '../../services/notificacoes.service';
 
-export type NotificacaoAcao = {
-  acao: 'novo'|'remover',
-  notificacao: Notificacao,
-};
-
-export type Notificacao = {
-    mensagem: string,
-    type?: string
+export interface Notificacao {
+  id: number,
+  mensagem: string,
+  novo: boolean,
+  type?: string
 }
-
 @Component({
   selector: 'app-notificacao',
   templateUrl: './notificacao.component.html',
@@ -21,29 +17,24 @@ export class NotificacaoComponent {
 
   constructor(private notificacoesService: NotificacoesService) {
      this.notificacoesService.getNotificacoes()
-      .subscribe((notificacaoAcao: NotificacaoAcao) => {
+      .subscribe((novaNotificacao: Notificacao) => {
 
-        switch(notificacaoAcao.acao) {
-          case 'novo':
-            this.notificacoes.push(notificacaoAcao.notificacao);
+        switch(novaNotificacao.novo) {
+          case true:
+            this.notificacoes.push(novaNotificacao);
             break;
 
-          case 'remover':
+          case false:
             this.notificacoes = this.notificacoes.filter(notificacao => {
-              return notificacao !== notificacaoAcao.notificacao;
+              return notificacao.id !== novaNotificacao.id;
             });
-            break;
-
-          default:
-            this.notificacoes = [];
             break;
         }
       });
   }
 
   remover(notificacao: Notificacao) {
-    this.notificacoesService
-      .removerNotificacao(notificacao);
+    this.notificacoesService.removerNotificacao(notificacao);
   }
 
   getType(notificacao: Notificacao) {

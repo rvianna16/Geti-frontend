@@ -1,25 +1,32 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, timer } from 'rxjs';
-import { Notificacao, NotificacaoAcao } from '../components/notificacao/notificacao.component';
+import { ConfirmComponent } from '../components/confirm/confirm.component';
+import { Notificacao } from '../components/notificacao/notificacao.component';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class NotificacoesService {
-  private notificacoes = new Subject<NotificacaoAcao>()
+  id: number = 0;
+  private notificacoes = new Subject<Notificacao>()
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
-  getNotificacoes(): Observable<NotificacaoAcao>{
+  getNotificacoes(): Observable<Notificacao>{
     return this.notificacoes.asObservable();
   }
 
-  private notificar(notificacao: Notificacao){
-    this.notificacoes.next({
-      acao: 'novo',
-      notificacao
-    });
+  private notificar(mensagem: string, type: string, novo = true, ){
+    const notificacao = {
+      id: this.id++,
+      mensagem,
+      type,
+      novo
+    }
+
+    this.notificacoes.next(notificacao);
 
     timer(3000).subscribe(() => {
       this.removerNotificacao(notificacao);
@@ -27,36 +34,27 @@ export class NotificacoesService {
   }
 
   notificarSucesso(mensagem: string) {
-    const objNotificacao = {
-      mensagem,
-      type: 'success'
-    }
-
-    this.notificar(objNotificacao);
+    this.notificar(mensagem, 'success');
   }
 
   notificarErro(mensagem: string) {
-    const objNotificacao = {
-      mensagem,
-      type: 'danger'
-    }
-
-    this.notificar(objNotificacao);
+    this.notificar(mensagem, 'danger');
   }
 
   notificarAlerta(mensagem: string) {
-    const objNotificacao = {
-      mensagem,
-      type: 'alert'
-    }
-
-    this.notificar(objNotificacao);
+    this.notificar(mensagem, 'alert');
   }
 
   removerNotificacao(notificacao: Notificacao) {
-    this.notificacoes.next({
-      acao: 'remover',
-      notificacao
-    });
+    notificacao.novo = false;
+    this.notificacoes.next(notificacao);
+  }
+
+  addConfirmacao(mensagem: string): Observable<boolean>{
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      data: mensagem
+    })
+
+    return dialogRef.afterClosed() as Observable<boolean>;
   }
 }

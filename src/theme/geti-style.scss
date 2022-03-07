@@ -6,6 +6,10 @@ h2 {
   @apply text-2xl mb-10 text-secondary #{!important};
 }
 
+h3 {
+  @apply text-xl mt-8 mb-6 text-black #{!important};
+}
+
 //Botões
 
 .mat-button-disabled {

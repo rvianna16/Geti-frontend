@@ -11,6 +11,7 @@ module.exports = {
       'light-up': '#f3f3f3',
       'light-blue': '#f3f9fe',
       'dark': '#d8d8d8',
+      'black': '#010101',
       'success': '#51a351',
       'danger': '#bb3b35',
       'alert': '#f89406'
