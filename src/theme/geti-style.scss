@@ -24,23 +24,6 @@ h3 {
   @apply hover:bg-light-up duration-200 #{!important};
 }
 
-/* .button-secondary:not(.mat-button-disabled) {
-  @apply cursor-pointer text-sm font-medium bg-dark text-light py-2 px-4 rounded hover:bg-dark-up duration-200 #{!important};
-}
-
-.button-outline.mat-button-disabled,
-.button-text.mat-button-disabled {
-    @apply text-sm font-medium text-disable border border-disable py-2 px-4 rounded #{!important};
-}
-
-.button-outline:not(.mat-button-disabled) {
-    @apply cursor-pointer text-sm font-medium text-primary border border-dark-down py-2 px-4 rounded hover:bg-light-up duration-200 #{!important};
-}
-
-.button-text:not(.mat-button-disabled) {
-  @apply cursor-pointer text-sm shadow-none font-medium text-dark-down border border-transparent hover:border-dark hover:text-dark py-2 px-4 rounded duration-200 #{!important};
-} */
-
 //Tabela
 
 .table-th {
@@ -50,4 +33,10 @@ h3 {
 .edit-icon,
 .delete-icon {
   @apply text-primary opacity-50 cursor-pointer hover:opacity-80 transition #{!important};
+}
+
+// MatToolTip
+
+.mat-tooltip {
+  @apply text-xs;
 }

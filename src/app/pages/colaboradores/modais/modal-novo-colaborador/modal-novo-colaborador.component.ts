@@ -24,7 +24,7 @@ export class ModalNovoColaboradorComponent implements OnInit {
 
   inicializador() {
     this.colaboradorForm = this.fb.group({
-      nome: [null, Validators.required],
+      nome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
       email: [null, [Validators.required, Validators.email]]
     })
   }

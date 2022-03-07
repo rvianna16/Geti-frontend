@@ -7,13 +7,16 @@
     <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
       <mat-label>Nome</mat-label>
       <input matInput formControlName="nome">
-      <mat-error>O nome do colaborador deve ser informado</mat-error>
+      <mat-error>
+        <app-invalid-state [control]="colaboradorForm.controls['nome']" fieldName="Nome"></app-invalid-state>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
       <mat-label required="true">E-mail</mat-label>
       <input matInput formControlName="email">
-      <mat-error *ngIf="colaboradorForm.controls['email'].hasError('required')">O e-mail do colaborador deve ser informado</mat-error>
-      <mat-error *ngIf="colaboradorForm.controls['email'].hasError('email')">Digite um e-mail válido</mat-error>
+      <mat-error>
+        <app-invalid-state [control]="colaboradorForm.controls['email']" fieldName="E-mail"></app-invalid-state>
+      </mat-error>
     </mat-form-field>
   </form>
 

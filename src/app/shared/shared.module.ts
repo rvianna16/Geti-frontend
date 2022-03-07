@@ -7,6 +7,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NotificacaoComponent } from './components/notificacao/notificacao.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { InvalidStateComponent } from './components/invalid-state/invalid-state.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     ButtonComponent,
     LoaderComponent,
     NotificacaoComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    InvalidStateComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     SearchComponent,
     ButtonComponent,
     LoaderComponent,
-    NotificacaoComponent
+    NotificacaoComponent,
+    InvalidStateComponent
   ]
 })
 export class SharedModule { }
