@@ -27,6 +27,10 @@ h3 {
   @apply hover:bg-light-up duration-200 #{!important};
 }
 
+.button-delete:not(.mat-button-disabled) {
+  @apply  hover:bg-danger hover:text-light duration-200 shadow-none #{!important};
+}
+
 //Tabela
 
 .table-th {

@@ -1,0 +1,29 @@
+<div class="p-10">
+    <h2>Colaborador</h2>
+
+    <div class="p-5 bg-light rounded-md mat-elevation-z1">
+      <form [formGroup]="colaboradorForm" *ngIf="colaboradorForm">
+        <div class="flex">
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+            <mat-error>
+              <app-invalid-state [control]="colaboradorForm.controls['nome']" fieldName="Nome"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+            <mat-label required="true">E-mail</mat-label>
+            <input matInput formControlName="email">
+            <mat-error>
+              <app-invalid-state [control]="colaboradorForm.controls['email']" fieldName="E-mail"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <app-button type="secondary" label="Voltar" (onClick)="voltar()"></app-button>
+        <app-button type="delete" label="Excluir" (onClick)="excluirColaborador()"></app-button>
+        <app-button label="Salvar" [disabled]="colaboradorForm.invalid" (onClick)="salvarColaborador()"></app-button>
+      </form>
+    </div>
+
+</div>

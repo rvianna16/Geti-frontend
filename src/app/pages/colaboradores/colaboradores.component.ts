@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NavigationExtras, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { ModalNovoColaboradorComponent } from './modais/modal-novo-colaborador/modal-novo-colaborador.component';
@@ -20,6 +21,7 @@ export class ColaboradoresComponent implements OnInit {
   subscription!: Subscription;
 
   constructor(
+    private router: Router,
     private _liveAnnouncer: LiveAnnouncer,
     private colaboradoresService: ColaboradoresService,
     private notificacoesService: NotificacoesService,
@@ -82,5 +84,15 @@ export class ColaboradoresComponent implements OnInit {
           });
       }
    });
+  }
+
+  editarColaborador(colaborador: Colaborador){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        id: colaborador.id
+      }
+    }
+
+    this.router.navigate(['colaboradores/editar'], {state: navigationExtras});
   }
 }

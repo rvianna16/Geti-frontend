@@ -1,5 +1,5 @@
 export interface Colaborador {
-  id?: any,
+  id?: string | any,
   nome: string,
   email: string,
   equipamentos?: any;

@@ -9,10 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalNovoColaboradorComponent } from './modais/modal-novo-colaborador/modal-novo-colaborador.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { ColaboradoresEditarComponent } from './colaboradores-editar/colaboradores-editar.component';
 
 
 @NgModule({
-  declarations: [ColaboradoresComponent, ModalNovoColaboradorComponent],
+  declarations: [ColaboradoresComponent, ModalNovoColaboradorComponent, ColaboradoresEditarComponent],
   imports: [
     CommonModule,
     ColaboradoresRoutingModule,
