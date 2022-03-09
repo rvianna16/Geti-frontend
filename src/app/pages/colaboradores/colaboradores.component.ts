@@ -4,11 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavigationExtras, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { ModalNovoColaboradorComponent } from './modais/modal-novo-colaborador/modal-novo-colaborador.component';
 import { Colaborador } from './models/colaborador';
-import { ColaboradoresService } from './service/colaboradores.service';
+import { ColaboradoresService } from './services/colaboradores.service';
 
 @Component({
   selector: 'app-colaboradores',
@@ -18,7 +18,6 @@ import { ColaboradoresService } from './service/colaboradores.service';
 export class ColaboradoresComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'email', 'opcoes'];
   colaboradoresDataSource: any = new MatTableDataSource();
-  subscription!: Subscription;
 
   constructor(
     private router: Router,

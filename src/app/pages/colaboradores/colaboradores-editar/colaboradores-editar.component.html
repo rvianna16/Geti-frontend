@@ -1,29 +1,58 @@
 <div class="p-10">
-    <h2>Colaborador</h2>
+  <h2>Colaborador</h2>
 
-    <div class="p-5 bg-light rounded-md mat-elevation-z1">
-      <form [formGroup]="colaboradorForm" *ngIf="colaboradorForm">
-        <div class="flex">
-          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
-            <mat-label>Nome</mat-label>
-            <input matInput formControlName="nome">
-            <mat-error>
-              <app-invalid-state [control]="colaboradorForm.controls['nome']" fieldName="Nome"></app-invalid-state>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
-            <mat-label required="true">E-mail</mat-label>
-            <input matInput formControlName="email">
-            <mat-error>
-              <app-invalid-state [control]="colaboradorForm.controls['email']" fieldName="E-mail"></app-invalid-state>
-            </mat-error>
-          </mat-form-field>
-        </div>
+  <div class="p-5 bg-light rounded-md mat-elevation-z1">
+    <form [formGroup]="colaboradorForm" *ngIf="colaboradorForm">
+      <div class="flex">
+        <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome">
+          <mat-error>
+            <app-invalid-state [control]="colaboradorForm.controls['nome']" fieldName="Nome"></app-invalid-state>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+          <mat-label required="true">E-mail</mat-label>
+          <input matInput formControlName="email">
+          <mat-error>
+            <app-invalid-state [control]="colaboradorForm.controls['email']" fieldName="E-mail"></app-invalid-state>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-        <app-button type="secondary" label="Voltar" (onClick)="voltar()"></app-button>
-        <app-button type="delete" label="Excluir" (onClick)="excluirColaborador()"></app-button>
-        <app-button label="Salvar" [disabled]="colaboradorForm.invalid" (onClick)="salvarColaborador()"></app-button>
-      </form>
-    </div>
+      <app-button type="secondary" label="Voltar" (onClick)="voltar()"></app-button>
+      <app-button type="delete" label="Excluir" (onClick)="excluirColaborador()"></app-button>
+      <app-button label="Salvar" [disabled]="colaboradorForm.invalid" (onClick)="salvarColaborador()"></app-button>
+    </form>
+  </div>
 
+  <ng-container>
+    <h3>{{equipamentosDataSource.filteredData.length ? 'Equipamentos' : 'Não há Equipamentos' }}</h3>
+    <table *ngIf="equipamentosDataSource.filteredData.length" mat-table [dataSource]="equipamentosDataSource" class="mat-elevation-z1 w-1/3">
+
+      <ng-container matColumnDef="patrimonio">
+        <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
+          Patrimônio
+        </th>
+        <td mat-cell *matCellDef="let equipamento" class="pr-6"> {{ equipamento.patrimonio }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipoEquipamento">
+        <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
+          Tipo
+        </th>
+        <td mat-cell *matCellDef="let equipamento" class="pr-6"> {{ equipamento.tipoEquipamento }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="statusEquipamento">
+        <th mat-header-cell *matHeaderCellDef class="table-th">
+          Status
+        </th>
+        <td mat-cell *matCellDef="let equipamento"> {{ handleStatusEquipamento(equipamento) }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-container>
 </div>

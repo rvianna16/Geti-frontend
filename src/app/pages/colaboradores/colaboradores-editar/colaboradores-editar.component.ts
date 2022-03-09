@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { NavigationExtras, Router } from '@angular/router';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
+import { Equipamento } from '../../equipamentos/models/equipamento';
 import { Colaborador } from '../models/colaborador';
-import { ColaboradoresService } from '../service/colaboradores.service';
+import { ColaboradoresService } from '../services/colaboradores.service';
 
 @Component({
   selector: 'app-colaboradores-editar',
@@ -14,6 +16,8 @@ export class ColaboradoresEditarComponent implements OnInit {
   idColaborador: string = '';
   colaborador!: Colaborador;
   colaboradorForm!: FormGroup;
+  displayedColumns: string[] = ['patrimonio', 'tipoEquipamento', 'statusEquipamento'];
+  equipamentosDataSource: any = new MatTableDataSource();
 
   constructor(
     private router: Router,
@@ -46,6 +50,7 @@ export class ColaboradoresEditarComponent implements OnInit {
   obterDetalhesColaborador(){
     this.colaboradoresService.obterColaboradorEquipamentos(this.idColaborador).subscribe((res) => {
       this.colaborador = res
+      this.equipamentosDataSource = new MatTableDataSource(this.colaborador.equipamentos);
       this.inicializarFormulario();
     })
   }
@@ -87,6 +92,15 @@ export class ColaboradoresEditarComponent implements OnInit {
           });
       }
    });
+  }
+
+  handleStatusEquipamento(equipamento: Equipamento) {
+    if(equipamento.statusEquipamento == 'EmUso'){
+      return 'Em Uso'
+    }else if(equipamento.statusEquipamento == 'EmDescarte') {
+      return 'Em Descarte'
+    }
+    return equipamento.statusEquipamento
   }
 
   voltar(){

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
-import { ColaboradoresService } from '../../service/colaboradores.service';
+import { ColaboradoresService } from '../../services/colaboradores.service';
 
 @Component({
   selector: 'app-modal-novo-colaborador',
