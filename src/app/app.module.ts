@@ -11,6 +11,11 @@ import { SharedModule } from './shared/shared.module';
 import { LoaderService } from './shared/services/loader.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './shared/services/loader-interceptor';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -24,7 +29,8 @@ import { LoaderInterceptor } from './shared/services/loader-interceptor';
     BrowserAnimationsModule,
     AngularMaterialModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot(maskConfig)
   ],
   providers: [
     LoaderService,

@@ -1,3 +1,6 @@
+body {
+  @apply text-base #{!important};
+}
 a {
   @apply text-sm #{!important};
 }
@@ -32,7 +35,7 @@ h3 {
 
 .edit-icon,
 .delete-icon {
-  @apply text-primary opacity-50 cursor-pointer hover:opacity-80 transition #{!important};
+  @apply text-secondary opacity-70 cursor-pointer hover:opacity-100 transition #{!important};
 }
 
 // MatToolTip

@@ -15,7 +15,7 @@ import { ColaboradoresService } from './service/colaboradores.service';
 })
 
 export class ColaboradoresComponent implements OnInit {
-  displayedColumns: string[] = ['nome', 'email', 'acoes'];
+  displayedColumns: string[] = ['nome', 'email', 'opcoes'];
   colaboradoresDataSource: any = new MatTableDataSource();
   subscription!: Subscription;
 

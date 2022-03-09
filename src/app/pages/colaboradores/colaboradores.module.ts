@@ -5,10 +5,10 @@ import { ColaboradoresRoutingModule } from './colaboradores-routing.module';
 import { ColaboradoresComponent } from './colaboradores.component';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ColaboradoresService } from './service/colaboradores.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalNovoColaboradorComponent } from './modais/modal-novo-colaborador/modal-novo-colaborador.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -19,7 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AngularMaterialModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forChild()
+
   ],
 })
 export class ColaboradoresModule { }
