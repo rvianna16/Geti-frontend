@@ -8,10 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
+import { EquipamentosEditarComponent } from './equipamentos-editar/equipamentos-editar.component';
 
 
 @NgModule({
-  declarations: [EquipamentosComponent],
+  declarations: [EquipamentosComponent, EquipamentosEditarComponent],
   imports: [
     CommonModule,
     EquipamentosRoutingModule,

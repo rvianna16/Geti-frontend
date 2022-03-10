@@ -1,0 +1,142 @@
+<div class="p-10">
+  <h2>{{ equipamentoId ? 'Equipamento' : 'Novo Equipamento'}}</h2>
+
+  <div class="p-5 bg-light rounded-md mat-elevation-z1">
+    <form [formGroup]="equipamentoForm">
+      <ng-container>
+        <h4>Informações</h4>
+        <div class="flex">
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
+            <mat-label>Patrimônio</mat-label>
+            <input matInput formControlName="patrimonio">
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['patrimonio']" fieldName="Patrimonio"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+            <mat-label>Tipo Equipamento</mat-label>
+            <mat-select formControlName="tipoEquipamento">
+              <mat-option *ngFor="let tipo of tipoEquipamento" [value]="tipo">
+                {{ tipo }}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['tipoEquipamento']" fieldName="Tipo Equipamento"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="flex">
+          <mat-form-field appearance="outline" class="w-1/2 mr-2">
+            <mat-label>Data de Aquisição</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dataAquisicao">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['dataAquisicao']" fieldName="Data de Aquisição"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 ">
+            <mat-label>Nota Fiscal</mat-label>
+            <input matInput formControlName="notaFiscal">
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['notaFiscal']" fieldName="Nota Fiscal"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+            <mat-label>Status do Equipamento</mat-label>
+            <mat-select formControlName="statusEquipamento">
+              <mat-option *ngFor="let status of statusEquipamento" [value]="status.valor">
+                {{ status.nome }}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['statusEquipamento']" fieldName="Status do Equipamento"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="w-1/2" appearance="outline">
+            <mat-label>Colaborador</mat-label>
+            <input type="text" matInput [matAutocomplete]="auto" formControlName="colaboradorId">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let colaborador of colaboradoresFiltrados | async" [value]="colaborador">
+                {{ colaborador.nome }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['colaboradorId']" fieldName="Colaborador"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container>
+        <h4>Especificações</h4>
+
+        <div class="flex">
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="modelo">
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['modelo']" fieldName="Modelo"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+            <mat-label>Processador</mat-label>
+            <input matInput formControlName="processador">
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['processador']" fieldName="Processador"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="flex">
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
+            <mat-label>Armazenamento</mat-label>
+            <input matInput formControlName="armazenamento">
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['armazenamento']" fieldName="Armazenamento"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+            <mat-label>Memoria</mat-label>
+            <input matInput formControlName="memoria">
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['memoria']" fieldName="Memoria"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+            <mat-label>IP</mat-label>
+            <input matInput formControlName="ip">
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['ip']" fieldName="IP"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput class="h-40" formControlName="descricao"></textarea>
+            <mat-error>
+              <app-invalid-state [control]="equipamentoForm.controls['descricao']" fieldName="Descrição"></app-invalid-state>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <app-button type="secondary" label="Voltar" (onClick)="voltar()"></app-button>
+      <app-button *ngIf="equipamentoId" type="delete" label="Excluir"></app-button>
+      <app-button *ngIf="!equipamentoId" label="Salvar" [disabled]="equipamentoForm.invalid" (onClick)="salvarEquipamento()"></app-button>
+      <app-button *ngIf="equipamentoId" label="Alterar" [disabled]="equipamentoForm.invalid" (onClick)="alterarEquipamento()"></app-button>
+    </form>
+  </div>
+</div>

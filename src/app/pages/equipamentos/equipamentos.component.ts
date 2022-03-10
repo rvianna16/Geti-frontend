@@ -2,6 +2,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NavigationExtras, Router } from '@angular/router';
 import { Equipamento } from './models/equipamento';
 
 import { EquipamentosService } from './services/equipamentos.service';
@@ -19,6 +20,7 @@ export class EquipamentosComponent implements OnInit {
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
+    private router: Router,
     private equipamentosService: EquipamentosService
   ) { }
 
@@ -56,5 +58,18 @@ export class EquipamentosComponent implements OnInit {
       return 'Em Descarte'
     }
     return equipamento.statusEquipamento
+  }
+
+  adicionarEquipamento(){
+    this.router.navigate(['equipamentos/novo']);
+  }
+
+  editarEquipamento(equipamento: Equipamento){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        id: equipamento.id
+      }
+    }
+    this.router.navigate(['equipamentos/editar'], {state: navigationExtras});
   }
 }

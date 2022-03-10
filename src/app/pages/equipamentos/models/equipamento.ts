@@ -1,5 +1,6 @@
 export interface Equipamento {
   id: string;
+  colaboradorId: string;
   patrimonio: string;
   tipoEquipamento: string;
   descricao: string;

@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +18,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 export const maskConfig: Partial<IConfig> = {
   validation: false,
 };
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ export const maskConfig: Partial<IConfig> = {
   ],
   providers: [
     LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -21,4 +21,23 @@ export class EquipamentosService {
     )
   }
 
+  obterEquipamentoDetalhes(id: string): Observable<Equipamento>{
+    const url = `${this.apiUrl}equipamentos/${id}/detalhes`
+
+    return this.http.get<Equipamento>(url).pipe(
+      map((response: any) => response.data)
+    )
+  }
+
+  salvarEquipamento(equipamento: Equipamento): Observable<any> {
+    const url = `${this.apiUrl}equipamentos`;
+
+    return this.http.post(url, equipamento);
+  }
+
+  alterarEquipamento(id: string, equipamento: Equipamento): Observable<any> {
+    const url = `${this.apiUrl}equipamentos/${id}`;
+
+    return this.http.put(url, equipamento);
+  }
 }

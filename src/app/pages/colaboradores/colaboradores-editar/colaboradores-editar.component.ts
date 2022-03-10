@@ -55,7 +55,7 @@ export class ColaboradoresEditarComponent implements OnInit {
     })
   }
 
-  salvarColaborador(){
+  alterarColaborador(){
     const colaborador: Colaborador = {
       id: this.idColaborador,
       nome: this.colaboradorForm.controls['nome'].value,
@@ -63,13 +63,13 @@ export class ColaboradoresEditarComponent implements OnInit {
     }
     this.colaboradoresService.alterarColaborador(this.idColaborador, colaborador).subscribe(
       (sucess) => {
-        this.notificacoesService.notificarSucesso('Colaborador salvo com sucesso!')
+        this.notificacoesService.notificarSucesso('Colaborador alterado com sucesso!')
       },
       (error) => {
         if(error.status == 400){
           this.notificacoesService.notificarErro(error.error.errors[0]);
         }else {
-          this.notificacoesService.notificarErro('Não foi possivel salvar o colaborador. Tente novamente mais tarde.');
+          this.notificacoesService.notificarErro('Não foi possivel alterar o colaborador. Tente novamente mais tarde.');
         }
       }
     )
