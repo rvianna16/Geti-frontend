@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavigationExtras, Router } from '@angular/router';
+import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { Equipamento } from './models/equipamento';
 
 import { EquipamentosService } from './services/equipamentos.service';
@@ -21,7 +22,8 @@ export class EquipamentosComponent implements OnInit {
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private router: Router,
-    private equipamentosService: EquipamentosService
+    private equipamentosService: EquipamentosService,
+    private notificacoesService: NotificacoesService
   ) { }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -71,5 +73,24 @@ export class EquipamentosComponent implements OnInit {
       }
     }
     this.router.navigate(['equipamentos/editar'], {state: navigationExtras});
+  }
+
+  excluirEquipamento(equipamento: Equipamento){
+    this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o equipamento ${equipamento.patrimonio} ?`).subscribe((estaConfirmado) => {
+      if(estaConfirmado){
+        this.equipamentosService.removerEquipamento(equipamento.id).subscribe(
+          (sucess) => {
+            this.notificacoesService.notificarSucesso('Equipamento excluído com sucesso!');
+            this.obterEquipamentos();
+          },
+          (error) => {
+            if(error.status == 400){
+              this.notificacoesService.notificarErro(error.error.errors[0]);
+            }else {
+              this.notificacoesService.notificarErro('Não foi possivel excluir o equipamento. Tente novamente mais tarde.');
+            }
+          });
+      }
+   });
   }
 }

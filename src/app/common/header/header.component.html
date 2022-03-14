@@ -1,6 +1,6 @@
 <div class="navbar-container" [class.navbar-mobile]="mobileQuery.matches">
   <div class="flex p-4">
-    <div class="flex items-center w-1/4">
+    <div class="flex items-center w-1/4 mr-6">
       <button mat-icon-button (click)="snav.toggle()" class="mr-2"><mat-icon>menu</mat-icon></button>
       <h1 class="m-0 cursor-pointer" [routerLink]="'/'">Geti</h1>
     </div>
@@ -12,7 +12,7 @@
   </div>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="84" class="sidenav">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="92" class="sidenav">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="mat-sidenav-content">

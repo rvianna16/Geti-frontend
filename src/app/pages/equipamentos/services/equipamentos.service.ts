@@ -40,4 +40,10 @@ export class EquipamentosService {
 
     return this.http.put(url, equipamento);
   }
+
+  removerEquipamento(id: string): Observable<any> {
+    const url = `${this.apiUrl}equipamentos/${id}`;
+
+    return this.http.delete(url);
+  }
 }

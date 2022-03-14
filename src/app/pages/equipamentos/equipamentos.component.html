@@ -7,65 +7,68 @@
   <div class="w-full bg-light p-5 rounded-t-xl mat-elevation-z1">
     <app-search label="Buscar Equipamento" class="no-margin"></app-search>
   </div>
-  <table mat-table [dataSource]="equipamentosDataSource" matSort (matSortChange)="announceSortChange($event)"
-  class="mat-elevation-z1 w-full">
+  <div class="overflow-y-auto">
+    <table mat-table [dataSource]="equipamentosDataSource" matSort (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z1 w-full">
 
-  <ng-container matColumnDef="patrimonio">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th">
-      Patrimônio
-    </th>
-    <td mat-cell *matCellDef="let equipamento"> {{ equipamento.patrimonio }} </td>
-  </ng-container>
+    <ng-container matColumnDef="patrimonio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th pr-6">
+        Patrimônio
+      </th>
+      <td mat-cell *matCellDef="let equipamento" class="pr-6"> {{ equipamento.patrimonio }} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="nomeColaborador">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th">
-      Colaborador
-    </th>
-    <td mat-cell *matCellDef="let equipamento"> {{ equipamento.nomeColaborador }} </td>
-  </ng-container>
+    <ng-container matColumnDef="nomeColaborador">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th pr-6">
+        Colaborador
+      </th>
+      <td mat-cell *matCellDef="let equipamento" class="pr-6"> {{ equipamento.nomeColaborador }} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="tipoEquipamento">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th">
-      Tipo
-    </th>
-    <td mat-cell *matCellDef="let equipamento"> {{ equipamento.tipoEquipamento }} </td>
-  </ng-container>
+    <ng-container matColumnDef="tipoEquipamento">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th pr-6">
+        Tipo
+      </th>
+      <td mat-cell *matCellDef="let equipamento" class="pr-6"> {{ equipamento.tipoEquipamento }} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="dataAquisicao">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th">
-      Data de Aquisição
-    </th>
-    <td mat-cell *matCellDef="let equipamento"> {{ equipamento.dataAquisicao | date:'dd/MM/yyyy' }} </td>
-  </ng-container>
+    <ng-container matColumnDef="dataAquisicao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th pr-6">
+        Data de Aquisição
+      </th>
+      <td mat-cell *matCellDef="let equipamento" class="pr-6"> {{ equipamento.dataAquisicao | date:'dd/MM/yyyy' }} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="statusEquipamento">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th">
-      Status
-    </th>
-    <td mat-cell *matCellDef="let equipamento"> {{ handleStatusEquipamento(equipamento) }} </td>
-  </ng-container>
+    <ng-container matColumnDef="statusEquipamento">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-th pr-6">
+        Status
+      </th>
+      <td mat-cell *matCellDef="let equipamento" class="pr-6"> {{ handleStatusEquipamento(equipamento) }} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="opcoes">
-    <th mat-header-cell *matHeaderCellDef class="table-th text-center">
-      <mat-icon>settings</mat-icon>
-    </th>
-    <td mat-cell *matCellDef="let equipamento" class="w-24 text-center pt-2">
-      <mat-icon class="delete-icon" matTooltip="Opções" [matMenuTriggerFor]="menu">more_vert</mat-icon>
-      <mat-menu #menu="matMenu" xPosition="after">
-        <button mat-menu-item (click)="editarEquipamento(equipamento)">
-          <mat-icon class="text-secondary">edit</mat-icon>
-          <span>Editar</span>
-        </button>
-        <button mat-menu-item (click)="excluirEquipamento(equipamento)">
-          <mat-icon class="text-secondary">delete</mat-icon>
-          <span>Excluir</span>
-        </button>
-      </mat-menu>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="opcoes">
+      <th mat-header-cell *matHeaderCellDef class="table-th text-center">
+        <mat-icon>settings</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let equipamento" class="w-24 text-center pt-2">
+        <mat-icon class="delete-icon" matTooltip="Opções" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+        <mat-menu #menu="matMenu" xPosition="after">
+          <button mat-menu-item (click)="editarEquipamento(equipamento)">
+            <mat-icon class="text-secondary">edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="excluirEquipamento(equipamento)">
+            <mat-icon class="text-secondary">delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
 
 </div>

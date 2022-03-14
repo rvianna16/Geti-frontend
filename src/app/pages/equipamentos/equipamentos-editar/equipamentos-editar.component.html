@@ -60,7 +60,7 @@
         </div>
 
         <div>
-          <mat-form-field class="w-1/2" appearance="outline">
+          <mat-form-field class="w-1/2" appearance="outline" hideRequiredMarker>
             <mat-label>Colaborador</mat-label>
             <input type="text" matInput [matAutocomplete]="auto" formControlName="colaboradorId">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -134,7 +134,7 @@
       </ng-container>
 
       <app-button type="secondary" label="Voltar" (onClick)="voltar()"></app-button>
-      <app-button *ngIf="equipamentoId" type="delete" label="Excluir"></app-button>
+      <app-button *ngIf="equipamentoId" type="delete" label="Excluir" (click)="excluirEquipamento()"></app-button>
       <app-button *ngIf="!equipamentoId" label="Salvar" [disabled]="equipamentoForm.invalid" (onClick)="salvarEquipamento()"></app-button>
       <app-button *ngIf="equipamentoId" label="Alterar" [disabled]="equipamentoForm.invalid" (onClick)="alterarEquipamento()"></app-button>
     </form>

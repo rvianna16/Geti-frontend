@@ -146,7 +146,25 @@ export class EquipamentosEditarComponent implements OnInit {
         }
       }
     )
+  }
 
+  excluirEquipamento(){
+    this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o equipamento ${this.equipamento.patrimonio} ?`).subscribe((estaConfirmado) => {
+      if(estaConfirmado){
+        this.equipamentosService.removerEquipamento(this.equipamentoId).subscribe(
+          (sucess) => {
+            this.notificacoesService.notificarSucesso('Equipamento excluído com sucesso!');
+            this.voltar();
+          },
+          (error) => {
+            if(error.status == 400){
+              this.notificacoesService.notificarErro(error.error.errors[0]);
+            }else {
+              this.notificacoesService.notificarErro('Não foi possivel excluir o equipamento. Tente novamente mais tarde.');
+            }
+          });
+      }
+   });
   }
 
   get equipamentoObjeto(){

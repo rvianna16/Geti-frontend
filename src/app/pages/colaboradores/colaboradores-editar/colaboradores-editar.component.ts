@@ -13,10 +13,10 @@ import { ColaboradoresService } from '../services/colaboradores.service';
 })
 
 export class ColaboradoresEditarComponent implements OnInit {
-  idColaborador: string = '';
+  colaboradorId: string = '';
   colaborador!: Colaborador;
   colaboradorForm!: FormGroup;
-  displayedColumns: string[] = ['patrimonio', 'tipoEquipamento', 'statusEquipamento'];
+  displayedColumns: string[] = ['patrimonio', 'tipoEquipamento', 'statusEquipamento', 'visualizar'];
   equipamentosDataSource: any = new MatTableDataSource();
 
   constructor(
@@ -27,9 +27,9 @@ export class ColaboradoresEditarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.idColaborador = history.state.state?.id;
+    this.colaboradorId = history.state.state?.id;
 
-    if(this.idColaborador){
+    if(this.colaboradorId){
       this.inicializador();
     }else {
       this.voltar();
@@ -48,7 +48,7 @@ export class ColaboradoresEditarComponent implements OnInit {
   }
 
   obterDetalhesColaborador(){
-    this.colaboradoresService.obterColaboradorEquipamentos(this.idColaborador).subscribe((res) => {
+    this.colaboradoresService.obterColaboradorEquipamentos(this.colaboradorId).subscribe((res) => {
       this.colaborador = res
       this.equipamentosDataSource = new MatTableDataSource(this.colaborador.equipamentos);
       this.inicializarFormulario();
@@ -57,11 +57,11 @@ export class ColaboradoresEditarComponent implements OnInit {
 
   alterarColaborador(){
     const colaborador: Colaborador = {
-      id: this.idColaborador,
+      id: this.colaboradorId,
       nome: this.colaboradorForm.controls['nome'].value,
       email: this.colaboradorForm.controls['email'].value
     }
-    this.colaboradoresService.alterarColaborador(this.idColaborador, colaborador).subscribe(
+    this.colaboradoresService.alterarColaborador(this.colaboradorId, colaborador).subscribe(
       (sucess) => {
         this.notificacoesService.notificarSucesso('Colaborador alterado com sucesso!')
       },
@@ -78,7 +78,7 @@ export class ColaboradoresEditarComponent implements OnInit {
   excluirColaborador(){
     this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o colaborador ${this.colaborador.nome} ?`).subscribe((estaConfirmado) => {
       if(estaConfirmado){
-        this.colaboradoresService.removerColaborador(this.idColaborador).subscribe(
+        this.colaboradoresService.removerColaborador(this.colaboradorId).subscribe(
           (sucess) => {
             this.notificacoesService.notificarSucesso('Colaborador excluído com sucesso!');
             this.voltar();
@@ -101,6 +101,16 @@ export class ColaboradoresEditarComponent implements OnInit {
       return 'Em Descarte'
     }
     return equipamento.statusEquipamento
+  }
+
+  visualizarEquipamento(equipamento: Equipamento){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        id: equipamento.id
+      }
+    }
+
+    this.router.navigate(['equipamentos/editar'], {state: navigationExtras})
   }
 
   voltar(){
