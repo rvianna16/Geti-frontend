@@ -38,6 +38,12 @@ export class SidenavComponent implements OnInit {
       icon: 'computer',
       route: '/equipamentos',
     },
+    {
+      type: 'link',
+      label: 'Softwares',
+      icon: 'build',
+      route: '/softwares',
+    },
   ]
 
   constructor() { }

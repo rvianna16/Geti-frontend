@@ -40,7 +40,7 @@ export class ColaboradoresService {
     return this.http.put(url, colaborador);
   }
 
-  removerColaborador(id: string): Observable<any> {
+  excluirColaborador(id: string): Observable<any> {
     const url = `${this.apiUrl}colaboradores/${id}`;
 
     return this.http.delete(url);

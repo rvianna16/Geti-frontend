@@ -10,8 +10,7 @@ import { EquipamentosService } from './services/equipamentos.service';
 
 @Component({
   selector: 'app-equipamentos',
-  templateUrl: './equipamentos.component.html',
-  styleUrls: ['./equipamentos.component.scss']
+  templateUrl: './equipamentos.component.html'
 })
 
 export class EquipamentosComponent implements OnInit {
@@ -78,7 +77,7 @@ export class EquipamentosComponent implements OnInit {
   excluirEquipamento(equipamento: Equipamento){
     this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o equipamento ${equipamento.patrimonio} ?`).subscribe((estaConfirmado) => {
       if(estaConfirmado){
-        this.equipamentosService.removerEquipamento(equipamento.id).subscribe(
+        this.equipamentosService.excluirEquipamento(equipamento.id).subscribe(
           (sucess) => {
             this.notificacoesService.notificarSucesso('Equipamento excluído com sucesso!');
             this.obterEquipamentos();

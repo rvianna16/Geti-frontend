@@ -78,7 +78,7 @@ export class ColaboradoresEditarComponent implements OnInit {
   excluirColaborador(){
     this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o colaborador ${this.colaborador.nome} ?`).subscribe((estaConfirmado) => {
       if(estaConfirmado){
-        this.colaboradoresService.removerColaborador(this.colaboradorId).subscribe(
+        this.colaboradoresService.excluirColaborador(this.colaboradorId).subscribe(
           (sucess) => {
             this.notificacoesService.notificarSucesso('Colaborador excluído com sucesso!');
             this.voltar();

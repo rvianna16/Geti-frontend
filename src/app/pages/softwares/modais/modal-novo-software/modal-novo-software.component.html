@@ -1,0 +1,27 @@
+<h2 mat-dialog-title class="modal-title flex items-center justify-between">
+  Novo Software
+  <mat-icon mat-dialog-close class="cursor-pointer">close</mat-icon>
+  </h2>
+<div>
+  <form [formGroup]="softwareForm">
+    <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome">
+      <mat-error>
+        <app-invalid-state [control]="softwareForm.controls['nome']" fieldName="Nome"></app-invalid-state>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
+      <mat-label required="true">Descrição</mat-label>
+      <textarea matInput class="h-40" formControlName="descricao"></textarea>
+        <mat-error>
+          <app-invalid-state [control]="softwareForm.controls['descricao']" fieldName="Descrição"></app-invalid-state>
+        </mat-error>
+    </mat-form-field>
+  </form>
+
+  <div class="flex justify-end">
+    <app-button type="secondary" label="Voltar" (onClick)="fecharModal()"></app-button>
+    <app-button label="Salvar" class="-mr-2" [disabled]="softwareForm.invalid" (onClick)="salvarSoftware()"></app-button>
+  </div>
+</div>

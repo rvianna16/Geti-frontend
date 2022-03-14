@@ -151,7 +151,7 @@ export class EquipamentosEditarComponent implements OnInit {
   excluirEquipamento(){
     this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o equipamento ${this.equipamento.patrimonio} ?`).subscribe((estaConfirmado) => {
       if(estaConfirmado){
-        this.equipamentosService.removerEquipamento(this.equipamentoId).subscribe(
+        this.equipamentosService.excluirEquipamento(this.equipamentoId).subscribe(
           (sucess) => {
             this.notificacoesService.notificarSucesso('Equipamento excluído com sucesso!');
             this.voltar();
