@@ -40,10 +40,16 @@ export class SidenavComponent implements OnInit {
     },
     {
       type: 'link',
+      label: 'Licenças',
+      icon: 'vpn_key',
+      route: '/licencas',
+    },
+    {
+      type: 'link',
       label: 'Softwares',
       icon: 'build',
       route: '/softwares',
-    },
+    }
   ]
 
   constructor() { }

@@ -22,7 +22,6 @@ import { ColaboradoresEditarComponent } from './colaboradores-editar/colaborador
     SharedModule,
     HttpClientModule,
     NgxMaskModule.forChild()
-
   ],
 })
 export class ColaboradoresModule { }

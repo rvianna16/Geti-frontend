@@ -1,0 +1,40 @@
+<h2 mat-dialog-title class="text-xl flex items-center justify-between">
+  Adicionar Licença
+  <mat-icon mat-dialog-close class="cursor-pointer">close</mat-icon>
+</h2>
+<form [formGroup]="vincularLicencaForm">
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Software</mat-label>
+    <input type="text" matInput [matAutocomplete]="auto" formControlName="softwareId">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let software of softwaresFiltrados | async" [value]="software" (click)="softwareSelecionado()">
+        {{ software.nome }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error>
+      <app-invalid-state [control]="vincularLicencaForm.controls['softwareId']" fieldName="Software"></app-invalid-state>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label>Licença</mat-label>
+    <input type="text" matInput [matAutocomplete]="autoLicenca" formControlName="licencaId">
+    <mat-autocomplete #autoLicenca="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let licenca of licencasFiltrados | async" [value]="licenca">
+        {{ licenca.nome }} - {{ licenca.chave }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error>
+      <app-invalid-state [control]="vincularLicencaForm.controls['licencaId']" fieldName="Licença"></app-invalid-state>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="flex justify-end">
+    <app-button type="secondary" label="Voltar" (onClick)="fecharModal()"></app-button>
+    <app-button
+      label="Salvar"
+      class="-mr-2"
+      [disabled]="vincularLicencaForm.invalid || licencas.length == 0"
+      (onClick)="vincularLicenca()"></app-button>
+  </div>
+</form>

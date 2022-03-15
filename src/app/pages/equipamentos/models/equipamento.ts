@@ -1,3 +1,5 @@
+import { Licenca } from "../../licencas/models/licencas";
+
 export interface Equipamento {
   id: string;
   colaboradorId: string;
@@ -13,6 +15,6 @@ export interface Equipamento {
   processador: string;
   ip: string;
   statusEquipamento: string;
-  licencas?: any;
+  licencas?: Licenca[];
   comentarios?: any;
 }

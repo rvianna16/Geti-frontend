@@ -1,8 +1,9 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
+import { Location } from '@angular/common';
+
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { Colaborador } from '../../colaboradores/models/colaborador';
 import { ColaboradoresService } from '../../colaboradores/services/colaboradores.service';
@@ -10,6 +11,11 @@ import { statusEquipamento } from '../data/status-equipamento';
 import { tipoEquipamento } from '../data/tipo-equipamento';
 import { Equipamento } from '../models/equipamento';
 import { EquipamentosService } from '../services/equipamentos.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalVincularLicencaComponent } from '../modais/modal-vincular-licenca/modal-vincular-licenca.component';
+import { Licenca } from '../../licencas/models/licencas';
+import { LicencasService } from '../../licencas/services/licencas.service';
 
 @Component({
   selector: 'app-equipamentos-editar',
@@ -26,12 +32,18 @@ export class EquipamentosEditarComponent implements OnInit {
   colaboradores: Colaborador[] = [];
   colaboradoresFiltrados!: Observable<Colaborador[]>;
 
+  displayedColumns: string[] = ['nome', 'chave', 'software', 'excluir'];
+  licencasDataSource: any = new MatTableDataSource();
+
   constructor(
     private router: Router,
+    private location: Location,
     private fb: FormBuilder,
     private colaboradoreService: ColaboradoresService,
     private equipamentosService: EquipamentosService,
-    private notificacoesService: NotificacoesService
+    private licencasService: LicencasService,
+    private notificacoesService: NotificacoesService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +86,7 @@ export class EquipamentosEditarComponent implements OnInit {
     this.equipamentosService.obterEquipamentoDetalhes(this.equipamentoId).subscribe((equipamento: Equipamento) => {
       this.equipamento = equipamento;
       this.equipamentoForm.patchValue(equipamento);
+      this.licencasDataSource = new MatTableDataSource(equipamento.licencas);
 
       //Vínculo do Colaborador ID-Nome para exibição do AutoComplete
       const colaborador = {
@@ -174,8 +187,39 @@ export class EquipamentosEditarComponent implements OnInit {
     return equipamento;
   }
 
-  voltar(){
-    this.router.navigate(['equipamentos']);
+  vincularLicenca(){
+    const dialogRef = this.dialog.open(ModalVincularLicencaComponent, {
+      width: '800px',
+      data: this.equipamentoId
+    })
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result){
+        this.obterEquipamentoDetalhes();
+      }
+    });
   }
 
+  desvincularLicenca(licenca: Licenca){
+    this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir a licença ${licenca.nome} do equipamento ${this.equipamento.patrimonio} ?`).subscribe((estaConfirmado) => {
+      if(estaConfirmado){
+        this.licencasService.desvincularLicenca(licenca.id).subscribe(
+          (sucess) => {
+            this.notificacoesService.notificarSucesso('Licença excluída com sucesso!');
+            this.obterEquipamentoDetalhes();
+          },
+          (error) => {
+            if(error.status == 400){
+              this.notificacoesService.notificarErro(error.error.errors[0]);
+            }else {
+              this.notificacoesService.notificarErro('Não foi possivel excluir a licença. Tente novamente mais tarde.');
+            }
+          });
+      }
+   });
+  }
+
+  voltar(){
+    this.location.back();
+  }
 }

@@ -9,10 +9,11 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 import { EquipamentosEditarComponent } from './equipamentos-editar/equipamentos-editar.component';
+import { ModalVincularLicencaComponent } from './modais/modal-vincular-licenca/modal-vincular-licenca.component';
 
 
 @NgModule({
-  declarations: [EquipamentosComponent, EquipamentosEditarComponent],
+  declarations: [EquipamentosComponent, EquipamentosEditarComponent, ModalVincularLicencaComponent],
   imports: [
     CommonModule,
     EquipamentosRoutingModule,
