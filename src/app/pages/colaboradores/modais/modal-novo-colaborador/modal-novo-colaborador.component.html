@@ -4,14 +4,14 @@
   </h2>
 <div>
   <form [formGroup]="colaboradorForm">
-    <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>Nome</mat-label>
       <input matInput formControlName="nome">
       <mat-error>
         <app-invalid-state [control]="colaboradorForm.controls['nome']" fieldName="Nome"></app-invalid-state>
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline" hideRequiredMarker class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label required="true">E-mail</mat-label>
       <input matInput formControlName="email">
       <mat-error>

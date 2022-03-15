@@ -6,14 +6,14 @@
       <ng-container>
         <h4>Informações</h4>
         <div class="flex">
-          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
+          <mat-form-field appearance="outline" class="w-1/2 mr-2">
             <mat-label>Patrimônio</mat-label>
             <input matInput formControlName="patrimonio">
             <mat-error>
               <app-invalid-state [control]="equipamentoForm.controls['patrimonio']" fieldName="Patrimonio"></app-invalid-state>
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+          <mat-form-field appearance="outline" class="w-1/2">
             <mat-label>Tipo Equipamento</mat-label>
             <mat-select formControlName="tipoEquipamento">
               <mat-option *ngFor="let tipo of tipoEquipamento" [value]="tipo">
@@ -46,7 +46,7 @@
         </div>
 
         <div>
-          <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+          <mat-form-field appearance="outline" class="w-1/2">
             <mat-label>Status do Equipamento</mat-label>
             <mat-select formControlName="statusEquipamento">
               <mat-option *ngFor="let status of statusEquipamento" [value]="status.valor">
@@ -60,7 +60,7 @@
         </div>
 
         <div>
-          <mat-form-field class="w-1/2" appearance="outline" hideRequiredMarker>
+          <mat-form-field class="w-1/2" appearance="outline">
             <mat-label>Colaborador</mat-label>
             <input type="text" matInput [matAutocomplete]="auto" formControlName="colaboradorId">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">

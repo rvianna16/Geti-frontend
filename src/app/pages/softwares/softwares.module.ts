@@ -7,12 +7,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ModalNovoSoftwareComponent } from './modais/modal-novo-software/modal-novo-software.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SoftwaresEditarComponent } from './softwares-editar/softwares-editar.component';
 
 
 @NgModule({
   declarations: [
     SoftwaresComponent,
-    ModalNovoSoftwareComponent
+    ModalNovoSoftwareComponent,
+    SoftwaresEditarComponent
   ],
   imports: [
     CommonModule,

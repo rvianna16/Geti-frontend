@@ -20,10 +20,24 @@ export class SoftwaresService {
     )
   }
 
-  salvarSoftware(Software: Software): Observable<any> {
-    const url = `${this.apiUrl}Softwares`;
+  obterSoftwareLicencas(id: string): Observable<Software>{
+    const url = `${this.apiUrl}softwares/${id}/detalhes`
 
-    return this.http.post(url, Software);
+    return this.http.get<Software>(url).pipe(
+      map((response: any) => response.data)
+    )
+  }
+
+  salvarSoftware(software: Software): Observable<any> {
+    const url = `${this.apiUrl}softwares`;
+
+    return this.http.post(url, software);
+  }
+
+  alterarSoftware(id: string, software: Software): Observable<any> {
+    const url = `${this.apiUrl}softwares/${id}`;
+
+    return this.http.put(url, software);
   }
 
   excluirSoftware(id: string): Observable<any> {

@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { ModalNovoSoftwareComponent } from './modais/modal-novo-software/modal-novo-software.component';
 import { Software } from './models/software';
@@ -84,6 +84,15 @@ export class SoftwaresComponent implements OnInit {
           });
       }
    });
+  }
+
+  editarSoftware(software: Software) {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        id: software.id
+      }
+    }
+    this.router.navigate(['softwares/editar'], {state: navigationExtras})
   }
 
 }

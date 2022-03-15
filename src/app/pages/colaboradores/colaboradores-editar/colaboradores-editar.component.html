@@ -5,14 +5,14 @@
     <h4>Informações</h4>
     <form [formGroup]="colaboradorForm" *ngIf="colaboradorForm">
       <div class="flex">
-        <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2 mr-2">
+        <mat-form-field appearance="outline" class="w-1/2 mr-2">
           <mat-label>Nome</mat-label>
           <input matInput formControlName="nome">
           <mat-error>
             <app-invalid-state [control]="colaboradorForm.controls['nome']" fieldName="Nome"></app-invalid-state>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" hideRequiredMarker class="w-1/2">
+        <mat-form-field appearance="outline" class="w-1/2">
           <mat-label required="true">E-mail</mat-label>
           <input matInput formControlName="email">
           <mat-error>
