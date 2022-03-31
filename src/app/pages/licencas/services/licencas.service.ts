@@ -14,8 +14,8 @@ export class LicencasService {
 
   constructor(public http: HttpClient) { }
 
-  obterLicencas(): Observable<Licenca[]>{
-    const url = `${this.apiUrl}licencas`;
+  obterLicencas(filtro = ''): Observable<Licenca[]>{
+    const url = `${this.apiUrl}licencas?filtro=${filtro}`;
 
     return this.http.get<Licenca[]>(url).pipe(
       map((response: any) => response.data)

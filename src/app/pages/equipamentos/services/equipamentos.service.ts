@@ -13,8 +13,8 @@ export class EquipamentosService {
 
   constructor(public http: HttpClient) { }
 
-  obterEquipamentos(): Observable<Equipamento[]>{
-    const url = `${this.apiUrl}equipamentos`;
+  obterEquipamentos(filtro = ''): Observable<Equipamento[]>{
+    const url = `${this.apiUrl}equipamentos?filtro=${filtro}`;
 
     return this.http.get<Equipamento[]>(url).pipe(
       map((response: any) => response.data)

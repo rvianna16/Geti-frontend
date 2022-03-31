@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit {
   valorInput: string = '';
   @Output() onSearch = new EventEmitter();
 
-
   constructor() { }
 
   ngOnInit(): void {
@@ -24,5 +23,4 @@ export class SearchComponent implements OnInit {
   buscar(){
     this.onSearch.emit(this.valorInput);
   }
-
 }

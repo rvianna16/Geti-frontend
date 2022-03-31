@@ -8,6 +8,7 @@ import { LoaderService } from '../../services/loader.service';
 })
 export class LoaderComponent implements OnInit {
   loading: boolean = false;
+  loadingStatus: number = 0;
 
   constructor(
     private loaderService: LoaderService,
@@ -15,8 +16,18 @@ export class LoaderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.loaderService.isLoading.subscribe((v) => {
-      this.loading = v;
+    this.loaderService.isLoading.subscribe((isLoading) => {
+      if(isLoading){
+        this.loadingStatus++
+      }else {
+        this.loadingStatus = 0;
+        this.loading = false;
+      }
+
+      if(this.loadingStatus >= 5) {
+        this.loading = true;
+      }
+
       this.cd.detectChanges();
     });
   }

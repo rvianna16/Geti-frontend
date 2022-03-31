@@ -47,8 +47,8 @@ export class ColaboradoresComponent implements OnInit {
     this.obterColaboradores();
   }
 
-  obterColaboradores(){
-    this.colaboradoresService.obterColaboradores().subscribe((res: Colaborador[]) => {
+  obterColaboradores(filtro = ''){
+    this.colaboradoresService.obterColaboradores(filtro).subscribe((res: Colaborador[]) => {
       this.colaboradoresDataSource = new MatTableDataSource(res);
       this.colaboradoresDataSource.sort = this.sort;
     })

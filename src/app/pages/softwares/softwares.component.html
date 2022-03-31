@@ -5,7 +5,7 @@
   </div>
 
   <div class="w-full bg-light p-5 rounded-t-xl mat-elevation-z1">
-    <app-search label="Buscar Software" class="no-margin"></app-search>
+    <app-search label="Buscar Software" class="no-margin" (onSearch)="obterSoftwares($event)"></app-search>
   </div>
   <div class="overflow-y-auto">
     <table mat-table [dataSource]="softwaresDataSource" matSort (matSortChange)="announceSortChange($event)"

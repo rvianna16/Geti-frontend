@@ -44,8 +44,8 @@ export class EquipamentosComponent implements OnInit {
     this.obterEquipamentos();
   }
 
-  obterEquipamentos(){
-    this.equipamentosService.obterEquipamentos().subscribe((res: Equipamento[]) => {
+  obterEquipamentos(filtro = ''){
+    this.equipamentosService.obterEquipamentos(filtro).subscribe((res: Equipamento[]) => {
       this.equipamentos = res;
       this.equipamentosDataSource = new MatTableDataSource(this.equipamentos);
       this.equipamentosDataSource.sort = this.sort;

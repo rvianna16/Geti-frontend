@@ -47,8 +47,8 @@ export class SoftwaresComponent implements OnInit {
     this.obterSoftwares();
   }
 
-  obterSoftwares(){
-    this.softwaresService.obterSoftwares().subscribe((res: Software[]) => {
+  obterSoftwares(filtro = ''){
+    this.softwaresService.obterSoftwares(filtro).subscribe((res: Software[]) => {
       this.softwares = res;
       this.softwaresDataSource = new MatTableDataSource(this.softwares);
       this.softwaresDataSource.sort = this.sort;

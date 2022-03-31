@@ -12,8 +12,8 @@ export class SoftwaresService {
 
   constructor(public http: HttpClient) { }
 
-  obterSoftwares(): Observable<Software[]> {
-    const url = `${this.apiUrl}softwares`;
+  obterSoftwares(filtro = ''): Observable<Software[]> {
+    const url = `${this.apiUrl}softwares?filtro=${filtro}`;
 
     return this.http.get<Software[]>(url).pipe(
       map((response: any) => response.data)

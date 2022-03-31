@@ -12,8 +12,8 @@ export class ColaboradoresService {
 
   constructor(public http: HttpClient) { }
 
-  obterColaboradores(): Observable<Colaborador[]>{
-    const url = `${this.apiUrl}colaboradores`;
+  obterColaboradores(filtro = ''): Observable<Colaborador[]>{
+    const url = `${this.apiUrl}colaboradores?filtro=${filtro}`;
 
     return this.http.get<Colaborador[]>(url).pipe(
       map((response: any) => response.data)

@@ -44,8 +44,8 @@ export class LicencasComponent implements OnInit {
     this.obterLicencas();
   }
 
-  obterLicencas(){
-    this.licencasService.obterLicencas().subscribe((res: Licenca[]) => {
+  obterLicencas(filtro = ''){
+    this.licencasService.obterLicencas(filtro).subscribe((res: Licenca[]) => {
       this.licencas = res;
       this.licencasDataSource = new MatTableDataSource(this.licencas);
       this.licencasDataSource.sort = this.sort;
