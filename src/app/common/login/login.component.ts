@@ -1,7 +1,7 @@
-import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { AuthService } from 'src/app/security/auth.service';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { UsuarioService } from 'src/app/pages/usuarios/services/usuario.service';
@@ -11,6 +11,7 @@ import { UsuarioService } from 'src/app/pages/usuarios/services/usuario.service'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
 
@@ -22,15 +23,19 @@ export class LoginComponent implements OnInit {
     private notificacoesService: NotificacoesService
   ) { }
 
-  ngOnInit(): void {
-    this.authService.tokenIsValid().then(isValid => {
-      this.router.navigate([''])
-    });
+  ngOnInit() {
+    this.verificarUsuarioLogado();
 
     this.loginForm = this.fb.group({
       email: [null],
       password: [null]
     })
+  }
+
+  async verificarUsuarioLogado(){
+    if(await this.authService.tokenIsValid()){
+      this.router.navigate(['']);
+    }
   }
 
   login(){

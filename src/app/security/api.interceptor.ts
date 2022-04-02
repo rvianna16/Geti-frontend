@@ -13,6 +13,7 @@ export class ApiInterceptor implements HttpInterceptor {
       'accept': 'application/json',
       'Authorization': `Bearer ${this.authService.token}`
     });
+
     const newRequest = request.clone({ headers });
     return next.handle(newRequest);
   }

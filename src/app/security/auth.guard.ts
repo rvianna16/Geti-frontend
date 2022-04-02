@@ -10,16 +10,16 @@ export class AuthGuard implements CanActivate {
     private authService: AuthService ) {
   }
 
-  canActivate(
+  async canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
+    state: RouterStateSnapshot): Promise<boolean> {
 
-      if(this.authService.user && this.authService.tokenIsValid()){
-        return true
+      if(await this.authService.tokenIsValid() && this.authService.user){
+        return true;
       }
 
-    this.router.navigate(['login'])
-    return false;
+      this.authService.removeToken();
+      this.router.navigate(['login']);
+      return false;
   }
-
 }

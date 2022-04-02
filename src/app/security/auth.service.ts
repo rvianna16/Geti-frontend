@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { NotificacoesService } from '../shared/services/notificacoes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   protected apiUrl = environment.apiUrl;
 
-  constructor(public http: HttpClient) { }
+  constructor(
+    public http: HttpClient,
+    private notificacoesService: NotificacoesService
+    ) { }
 
   setToken(response: any) {
     localStorage.setItem('token', response.accessToken);
@@ -32,12 +36,11 @@ export class AuthService {
   }
 
   async tokenIsValid(){
-    await firstValueFrom(this.checkTokenValidity()).then((isValid) => {
-      return true
-    }).catch(error => {
-      this.removeToken();
-      return false;
+    const tokenIsValid = await firstValueFrom(this.checkTokenValidity()).catch(error => {
+      this.notificacoesService.notificarErro('Algo de errado aconteceu. Tente novamente mais tarde');
     });
+
+    return tokenIsValid;
   }
 
   checkTokenValidity(): Observable<boolean>{
