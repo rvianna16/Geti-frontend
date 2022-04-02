@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: HeaderComponent,
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
   },
   {

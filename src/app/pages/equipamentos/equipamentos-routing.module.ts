@@ -7,7 +7,6 @@ import { EquipamentosComponent } from './equipamentos.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
     component: EquipamentosComponent
   },
   {

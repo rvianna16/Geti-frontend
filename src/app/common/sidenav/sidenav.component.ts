@@ -49,7 +49,7 @@ export class SidenavComponent implements OnInit {
       label: 'Softwares',
       icon: 'build',
       route: '/softwares',
-    }
+    },
   ]
 
   constructor() { }

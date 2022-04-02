@@ -1,5 +1,6 @@
-import { HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpErrorResponse, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { catchError, throwError } from "rxjs";
 
 import { AuthService } from "./auth.service";
 

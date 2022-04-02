@@ -7,7 +7,6 @@ import { LicencasComponent } from './licencas.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
     component: LicencasComponent
   },
   {

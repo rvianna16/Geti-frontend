@@ -7,7 +7,6 @@ import { SoftwaresComponent } from './softwares.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
     component: SoftwaresComponent
   },
   {

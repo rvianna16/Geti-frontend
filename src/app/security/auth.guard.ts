@@ -14,10 +14,10 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
 
-      if(this.authService.token){
+      if(this.authService.user && this.authService.tokenIsValid()){
         return true
       }
-    //check some condition
+
     this.router.navigate(['login'])
     return false;
   }

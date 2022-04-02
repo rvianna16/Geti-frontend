@@ -7,7 +7,6 @@ import { ColaboradoresComponent } from './colaboradores.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
     component: ColaboradoresComponent
   },
   {
