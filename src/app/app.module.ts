@@ -10,10 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { HeaderComponent } from './common/header/header.component';
 import { SharedModule } from './shared/shared.module';
-import { LoaderService } from './shared/services/loader.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoaderInterceptor } from './shared/services/loader-interceptor';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { LoginComponent } from './common/login/login.component'
+import { ReactiveFormsModule } from '@angular/forms';
+import { ApiInterceptor } from './security/api.interceptor';
 
 export const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -25,7 +26,8 @@ registerLocaleData(localePt);
   declarations: [
     AppComponent,
     SidenavComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +36,15 @@ registerLocaleData(localePt);
     AngularMaterialModule,
     SharedModule,
     HttpClientModule,
+    ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig)
   ],
   providers: [
-    LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
+    },
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR'

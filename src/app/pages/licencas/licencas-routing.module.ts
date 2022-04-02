@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/security/auth.guard';
 import { LicencasEditarComponent } from './licencas-editar/licencas-editar.component';
 import { LicencasComponent } from './licencas.component';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     component: LicencasComponent
   },
   {
     path: 'novo',
+    canActivate: [AuthGuard],
     component: LicencasEditarComponent
   },
   {
     path: 'editar',
+    canActivate: [AuthGuard],
     component: LicencasEditarComponent
   }
 ];

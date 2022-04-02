@@ -1,0 +1,17 @@
+<p>login works!</p>
+<form [formGroup]="loginForm">
+  <mat-form-field appearance="outline" class="w-1/2 mr-2">
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="email">
+
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-1/2 mr-2">
+    <mat-label>Senha</mat-label>
+    <input matInput formControlName="password">
+
+  </mat-form-field>
+
+  <app-button label="Entrar" (onClick)="login()"></app-button>
+</form>
+
+<app-notificacao></app-notificacao>

@@ -9,6 +9,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { NotificacaoComponent } from './components/notificacao/notificacao.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { InvalidStateComponent } from './components/invalid-state/invalid-state.component';
+import { LoaderService } from './services/loader/loader.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './services/loader/loader-interceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,10 @@ import { InvalidStateComponent } from './components/invalid-state/invalid-state.
     LoaderComponent,
     NotificacaoComponent,
     InvalidStateComponent
+  ],
+  providers: [
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ]
 })
 export class SharedModule { }
