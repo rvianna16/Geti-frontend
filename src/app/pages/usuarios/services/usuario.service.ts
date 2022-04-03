@@ -21,11 +21,23 @@ export class UsuarioService {
     )
   }
 
+  salvarUsuario(usuario: Usuario): Observable<any> {
+    const url = `${this.apiUrl}novo-usuario`;
+
+    return this.http.post(url, usuario);
+  }
+
   login(usuario: Usuario): Observable<any>{
     const url = `${this.apiUrl}login`
 
     return this.http.post<any>(url, usuario).pipe(
       map((response: any) => response.data)
     );
+  }
+
+  excluirUsuario(id: string): Observable<any> {
+    const url = `${this.apiUrl}usuarios/${id}`;
+
+    return this.http.delete(url);
   }
 }

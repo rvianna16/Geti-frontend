@@ -1,8 +1,12 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+
+import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
+import { ModalNovoUsuarioComponent } from './modais/modal-novo-usuario/modal-novo-usuario.component';
 import { Usuario } from './models/usuario';
 import { UsuarioService } from './services/usuario.service';
 
@@ -18,7 +22,9 @@ export class UsuariosComponent implements OnInit {
   constructor(
     private router: Router,
     private _liveAnnouncer: LiveAnnouncer,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    public dialog: MatDialog,
+    private notificacoesService: NotificacoesService
   ) { }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -45,6 +51,37 @@ export class UsuariosComponent implements OnInit {
       this.usuariosDataSource = new MatTableDataSource(res);
       this.usuariosDataSource.sort = this.sort;
     })
+  }
+
+  adicionarUsuario(){
+    const dialogRef = this.dialog.open(ModalNovoUsuarioComponent, {
+      width: '680px'
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.obterUsuarios();
+      }
+    })
+  }
+
+  excluirUsuario(usuario: Usuario){
+    this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o usuário ${usuario.nome} ?`).subscribe((estaConfirmado) => {
+      if(estaConfirmado){
+        this.usuarioService.excluirUsuario(usuario.id).subscribe(
+          (sucess) => {
+            this.notificacoesService.notificarSucesso('Usuário excluído com sucesso!');
+            this.obterUsuarios();
+          },
+          (error) => {
+            if(error.status == 400){
+              this.notificacoesService.notificarErro(error.error.errors[0]);
+            }else {
+              this.notificacoesService.notificarErro('Não foi possivel excluir o usuário. Tente novamente mais tarde.');
+            }
+          });
+      }
+   });
   }
 
 }

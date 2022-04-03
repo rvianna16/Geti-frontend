@@ -95,6 +95,10 @@ export class EquipamentosEditarComponent implements OnInit {
       }
 
       this.equipamentoForm.controls['colaboradorId'].patchValue(colaborador)
+    },
+    (error) => {
+      this.notificacoesService.notificarErro('Não foi possível carregar o equipamento, tente novamente mais tarde.')
+      this.voltar();
     })
   }
 

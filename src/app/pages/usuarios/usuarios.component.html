@@ -1,7 +1,7 @@
 <div class="p-10">
   <div class="flex justify-between">
     <h2>Usuarios</h2>
-    <app-button label="Novo Usuario" icon="add_circle" class="-mr-2" [paddingY]="true"></app-button>
+    <app-button label="Novo Usuario" icon="add_circle" class="-mr-2" [paddingY]="true" (onClick)="adicionarUsuario()"></app-button>
   </div>
 
     <div class="w-full bg-light p-5 rounded-t-xl mat-elevation-z1">
@@ -14,28 +14,28 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" class="table-th">
         Nome
       </th>
-      <td mat-cell *matCellDef="let colaborador" class="break-all w-2/4 pr-6"> {{colaborador.nome}} </td>
+      <td mat-cell *matCellDef="let usuario" class="break-all w-2/4 pr-6"> {{usuario.nome}} </td>
     </ng-container>
 
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by mail" class="table-th">
         E-mail
       </th>
-      <td mat-cell *matCellDef="let colaborador"> {{colaborador.email}} </td>
+      <td mat-cell *matCellDef="let usuario"> {{usuario.email}} </td>
     </ng-container>
 
     <ng-container matColumnDef="opcoes">
       <th mat-header-cell *matHeaderCellDef class="table-th text-center">
         <mat-icon>settings</mat-icon>
       </th>
-      <td mat-cell *matCellDef="let colaborador" class="w-24 text-center pt-2">
+      <td mat-cell *matCellDef="let usuario" class="w-24 text-center pt-2">
         <mat-icon class="delete-icon" matTooltip="Opções" [matMenuTriggerFor]="menu">more_vert</mat-icon>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item (click)="editarColaborador(colaborador)">
+          <button mat-menu-item (click)="alterarSenhaUsuario(usuario)">
             <mat-icon class="text-secondary">edit</mat-icon>
-            <span>Editar</span>
+            <span>Alterar Senha</span>
           </button>
-          <button mat-menu-item (click)="excluirColaborador(colaborador)">
+          <button mat-menu-item (click)="excluirUsuario(usuario)">
             <mat-icon class="text-secondary">delete</mat-icon>
             <span>Excluir</span>
           </button>
