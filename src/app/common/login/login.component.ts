@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       email: [null],
       senha: [null]
     })
+
   }
 
   async verificarUsuarioLogado(){

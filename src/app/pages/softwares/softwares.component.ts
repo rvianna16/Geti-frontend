@@ -16,7 +16,7 @@ import { SoftwaresService } from './services/softwares.service';
 
 export class SoftwaresComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'opcoes'];
-  softwaresDataSource: any = new MatTableDataSource();
+  softwaresDataSource = new MatTableDataSource<Software>();
   softwares: Software[] = [];
 
   constructor(

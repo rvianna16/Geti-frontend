@@ -17,7 +17,7 @@ import { UsuarioService } from './services/usuario.service';
 
 export class UsuariosComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'email', 'opcoes'];
-  usuariosDataSource: any = new MatTableDataSource();
+  usuariosDataSource = new MatTableDataSource<Usuario>();
 
   constructor(
     private router: Router,

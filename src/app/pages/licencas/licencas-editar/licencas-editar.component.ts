@@ -25,7 +25,7 @@ export class LicencasEditarComponent implements OnInit {
   softwaresFiltrados!: Observable<Software[]>;
 
   displayedColumns: string[] = ['patrimonio', 'tipoEquipamento', 'statusEquipamento'];
-  equipamentosDataSource: any = new MatTableDataSource();
+  equipamentosDataSource = new MatTableDataSource<Equipamento>();
 
   constructor(
     private fb: FormBuilder,

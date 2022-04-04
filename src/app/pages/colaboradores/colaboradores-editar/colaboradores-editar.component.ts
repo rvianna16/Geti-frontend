@@ -17,7 +17,7 @@ export class ColaboradoresEditarComponent implements OnInit {
   colaborador!: Colaborador;
   colaboradorForm!: FormGroup;
   displayedColumns: string[] = ['patrimonio', 'tipoEquipamento', 'statusEquipamento', 'visualizar'];
-  equipamentosDataSource: any = new MatTableDataSource();
+  equipamentosDataSource = new MatTableDataSource<Equipamento>();
 
   constructor(
     private router: Router,

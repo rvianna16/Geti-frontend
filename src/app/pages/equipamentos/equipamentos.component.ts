@@ -15,7 +15,7 @@ import { EquipamentosService } from './services/equipamentos.service';
 
 export class EquipamentosComponent implements OnInit {
   displayedColumns: string[] = ['patrimonio', 'nomeColaborador', 'tipoEquipamento', 'dataAquisicao', 'statusEquipamento', 'opcoes'];
-  equipamentosDataSource: any = new MatTableDataSource();
+  equipamentosDataSource = new MatTableDataSource<Equipamento>();
   equipamentos: Equipamento[] = [];
 
   constructor(

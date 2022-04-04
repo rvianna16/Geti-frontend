@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { map, Observable } from 'rxjs';
+import { BaseResponse } from 'src/app/shared/models/base-response';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario';
 
@@ -16,15 +17,15 @@ export class UsuarioService {
   obterUsuarios(filtro = ''): Observable<Usuario[]>{
     const url = `${this.apiUrl}usuarios?filtro=${filtro}`;
 
-    return this.http.get<Usuario[]>(url).pipe(
-      map((response: any) => response.data)
+    return this.http.get<BaseResponse<Usuario>>(url).pipe(
+      map((response: BaseResponse<Usuario>) => <Usuario[]>response.data)
     )
   }
 
-  salvarUsuario(usuario: Usuario): Observable<any> {
+  salvarUsuario(usuario: Usuario): Observable<void> {
     const url = `${this.apiUrl}novo-usuario`;
 
-    return this.http.post(url, usuario);
+    return this.http.post<void>(url, usuario);
   }
 
   login(usuario: Usuario): Observable<any>{
@@ -35,9 +36,9 @@ export class UsuarioService {
     );
   }
 
-  excluirUsuario(id: string): Observable<any> {
+  excluirUsuario(id: string): Observable<void> {
     const url = `${this.apiUrl}usuarios/${id}`;
 
-    return this.http.delete(url);
+    return this.http.delete<void>(url);
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
+import { Licenca } from '../../licencas/models/licencas';
 import { Software } from '../models/software';
 import { SoftwaresService } from '../services/softwares.service';
 
@@ -16,7 +17,7 @@ export class SoftwaresEditarComponent implements OnInit {
   software!: Software;
   softwareForm!: FormGroup;
   displayedColumns: string[] = ['nome', 'chave', 'visualizar'];
-  licencasDataSource: any = new MatTableDataSource();
+  licencasDataSource = new MatTableDataSource<Licenca>();
 
   constructor(
     private router: Router,

@@ -15,7 +15,7 @@ import { LicencasService } from './services/licencas.service';
 
 export class LicencasComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'chave', 'software', 'quantidade', 'disponivel', 'ativo', 'opcoes'];
-  licencasDataSource: any = new MatTableDataSource();
+  licencasDataSource = new MatTableDataSource<Licenca>();
   licencas: Licenca[] = [];
 
   constructor(

@@ -27,13 +27,13 @@ export class EquipamentosEditarComponent implements OnInit {
   equipamento!: Equipamento;
   equipamentoForm!: FormGroup;
   tipoEquipamento: string[] = tipoEquipamento;
-  statusEquipamento: any[] = statusEquipamento;
+  statusEquipamento = statusEquipamento;
 
   colaboradores: Colaborador[] = [];
   colaboradoresFiltrados!: Observable<Colaborador[]>;
 
   displayedColumns: string[] = ['nome', 'chave', 'software', 'excluir'];
-  licencasDataSource: any = new MatTableDataSource();
+  licencasDataSource = new MatTableDataSource<Licenca>();
 
   constructor(
     private router: Router,
