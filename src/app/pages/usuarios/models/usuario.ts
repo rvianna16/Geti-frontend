@@ -6,3 +6,7 @@ export interface Usuario {
   confirmacaoSenha?: string;
 }
 
+export interface UsuarioNovaSenha {
+  senha: string;
+  confirmacaoSenha: string;
+}

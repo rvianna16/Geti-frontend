@@ -5,7 +5,7 @@
   </div>
 
     <div class="w-full bg-light p-5 rounded-t-xl mat-elevation-z1">
-      <app-search label="Buscar Usuarios" class="no-margin" (onSearch)="obterUsuarios($event)"></app-search>
+      <app-search label="Buscar Usuario" class="no-margin" (onSearch)="obterUsuarios($event)"></app-search>
     </div>
     <table mat-table [dataSource]="usuariosDataSource" matSort (matSortChange)="announceSortChange($event)"
     class="mat-elevation-z1 w-full">

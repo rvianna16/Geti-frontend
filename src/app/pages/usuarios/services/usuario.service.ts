@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { BaseResponse } from 'src/app/shared/models/base-response';
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../models/usuario';
+import { Usuario, UsuarioNovaSenha } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,12 @@ export class UsuarioService {
     const url = `${this.apiUrl}novo-usuario`;
 
     return this.http.post<void>(url, usuario);
+  }
+
+  alterarSenhaUsuario(id: string, novaSenha: UsuarioNovaSenha): Observable<void> {
+    const url = `${this.apiUrl}usuarios/${id}`
+
+    return this.http.put<void>(url, novaSenha);
   }
 
   login(usuario: Usuario): Observable<any>{

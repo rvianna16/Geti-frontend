@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
+import { ModalAlterarSenhaComponent } from './modais/modal-alterar-senha/modal-alterar-senha.component';
 import { ModalNovoUsuarioComponent } from './modais/modal-novo-usuario/modal-novo-usuario.component';
 import { Usuario } from './models/usuario';
 import { UsuarioService } from './services/usuario.service';
@@ -82,6 +83,16 @@ export class UsuariosComponent implements OnInit {
           });
       }
    });
+  }
+
+  alterarSenhaUsuario(usuario: Usuario){
+    const dialogRef = this.dialog.open(ModalAlterarSenhaComponent, {
+      width: '680px',
+      data: {
+        nome: usuario.nome,
+        id: usuario.id
+      }
+    })
   }
 
 }

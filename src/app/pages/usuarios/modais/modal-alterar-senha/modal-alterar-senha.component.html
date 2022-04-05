@@ -1,0 +1,24 @@
+<h2 mat-dialog-title class="text-xl flex items-center justify-between">
+  Alterar Senha - {{ usuario.nome }}
+  <mat-icon mat-dialog-close class="cursor-pointer">close</mat-icon>
+</h2>
+<form [formGroup]="usuarioForm">
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Nova Senha</mat-label>
+    <input type="password" matInput formControlName="senha">
+    <mat-error>
+      <app-invalid-state [control]="usuarioForm.controls['senha']" fieldName="Nova Senha"></app-invalid-state>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label required="true">Confirmação da Senha</mat-label>
+    <input type="password" matInput formControlName="confirmacaoSenha">
+    <mat-error>
+      <app-invalid-state [control]="usuarioForm.controls['confirmacaoSenha']" fieldName="Confirmação da Senha"></app-invalid-state>
+    </mat-error>
+  </mat-form-field>
+  <div class="flex justify-end">
+    <app-button type="secondary" label="Voltar" (onClick)="fecharModal()"></app-button>
+    <app-button label="Salvar" class="-mr-2" [disabled]="usuarioForm.invalid" (onClick)="alterarSenha()"></app-button>
+  </div>
+</form>

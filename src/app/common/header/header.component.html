@@ -12,20 +12,13 @@
 
 
     <div class="flex items-center font-medium ">
-      {{ nomeUsuario }}
-      <mat-icon class="text-primary ml-4 cursor-pointer" matTooltip="Alterar Senha">vpn_key</mat-icon>
-
+      <div class="flex">
+        <mat-icon class="text-primary mr-1">account_circle</mat-icon>
+        {{ nomeUsuario }}
+      </div>
+      <mat-icon class="text-primary ml-4 cursor-pointer" matTooltip="Alterar Senha" (click)="alterarSenha()">vpn_key</mat-icon>
       <mat-icon class="text-primary ml-4 cursor-pointer" matTooltip="Sair" (click)="logout()">exit_to_app</mat-icon>
     </div>
-
-    <!-- <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-light font-medium cursor-pointer mr-6" [matMenuTriggerFor]="menu">
-      <mat-menu #menu="matMenu">
-        <h4 class="px-4">{{ nomeUsuario }}</h4>
-        <button mat-menu-item class="text-center font-medium">Alterar Senha</button>
-        <button mat-menu-item class="text-center font-medium" (click)="logout()">Sair</button>
-      </mat-menu>
-    </div> -->
-
   </div>
 
   <mat-sidenav-container class="sidenav-container">
@@ -36,7 +29,6 @@
       <app-notificacao></app-notificacao>
       <router-outlet></router-outlet>
       <app-loader></app-loader>
-
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
+import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
