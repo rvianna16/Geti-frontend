@@ -12,17 +12,20 @@
       <form [formGroup]="loginForm">
         <h3>Fazer login</h3>
         <mat-form-field appearance="outline" class="w-full mr-2">
-          <mat-label>Nome</mat-label>
+          <mat-label>E-mail</mat-label>
           <input matInput formControlName="email">
-
+          <mat-error>
+            <app-invalid-state [control]="loginForm.controls['email']" fieldName="E-mail"></app-invalid-state>
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Senha</mat-label>
           <input type="password" matInput formControlName="senha">
-
+          <mat-error>
+            <app-invalid-state [control]="loginForm.controls['senha']" fieldName="Senha"></app-invalid-state>
+          </mat-error>
         </mat-form-field>
-
-        <app-button class="block" label="Entrar" (onClick)="login()"></app-button>
+        <app-button class="block" label="Entrar" (onClick)="login()" [disabled]="loginForm.invalid"></app-button>
       </form>
     </div>
   </div>

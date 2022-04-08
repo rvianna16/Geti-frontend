@@ -19,8 +19,12 @@ export class NotificacaoComponent {
      this.notificacoesService.getNotificacoes()
       .subscribe((novaNotificacao: Notificacao) => {
 
+
         switch(novaNotificacao.novo) {
           case true:
+            if(this.notificacoes.length == 1){
+              break;
+            }
             this.notificacoes.push(novaNotificacao);
             break;
 

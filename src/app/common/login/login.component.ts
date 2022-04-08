@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/security/auth.service';
@@ -27,10 +27,9 @@ export class LoginComponent implements OnInit {
     this.verificarUsuarioLogado();
 
     this.loginForm = this.fb.group({
-      email: [null],
-      senha: [null]
+      email: [null, Validators.required],
+      senha: [null, Validators.required]
     })
-
   }
 
   async verificarUsuarioLogado(){
