@@ -1,17 +1,33 @@
-<p>login works!</p>
-<form [formGroup]="loginForm">
-  <mat-form-field appearance="outline" class="w-1/2 mr-2">
-    <mat-label>Nome</mat-label>
-    <input matInput formControlName="email">
+<div class="flex items-center justify-center h-full">
+  <div class="w-1/2 h-full items-center justify-center bg-primary hidden md:flex">
+    <img src="./../../../assets/it_services.png" />
+  </div>
 
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="w-1/2 mr-2">
-    <mat-label>Senha</mat-label>
-    <input matInput formControlName="senha">
+  <div class="w-full h-full flex flex-col gap-10 items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-3xl">Geti</h1>
+      <h2 class="text-4xl">Gestão de Equipamentos de TI</h2>
+    </div>
+    <div class="w-1/2">
+      <form [formGroup]="loginForm">
+        <h3>Fazer login</h3>
+        <mat-form-field appearance="outline" class="w-full mr-2">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="email">
 
-  </mat-form-field>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Senha</mat-label>
+          <input type="password" matInput formControlName="senha">
 
-  <app-button label="Entrar" (onClick)="login()"></app-button>
-</form>
+        </mat-form-field>
 
-<app-notificacao></app-notificacao>
+        <app-button class="block" label="Entrar" (onClick)="login()"></app-button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+
