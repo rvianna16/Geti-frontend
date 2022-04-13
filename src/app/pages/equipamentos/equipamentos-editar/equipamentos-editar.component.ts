@@ -16,6 +16,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalVincularLicencaComponent } from '../modais/modal-vincular-licenca/modal-vincular-licenca.component';
 import { Licenca } from '../../licencas/models/licencas';
 import { LicencasService } from '../../licencas/services/licencas.service';
+import * as moment from 'moment';
+import { Comentario } from '../models/comentario';
 
 @Component({
   selector: 'app-equipamentos-editar',
@@ -26,6 +28,7 @@ export class EquipamentosEditarComponent implements OnInit {
   equipamentoId: string = '';
   equipamento!: Equipamento;
   equipamentoForm!: FormGroup;
+  comentarioForm!: FormGroup;
   tipoEquipamento: string[] = tipoEquipamento;
   statusEquipamento = statusEquipamento;
 
@@ -34,6 +37,8 @@ export class EquipamentosEditarComponent implements OnInit {
 
   displayedColumns: string[] = ['nome', 'chave', 'software', 'excluir'];
   licencasDataSource = new MatTableDataSource<Licenca>();
+
+  comentarios: Comentario[] = [];
 
   constructor(
     private router: Router,
@@ -80,6 +85,10 @@ export class EquipamentosEditarComponent implements OnInit {
       ip: [null, [Validators.maxLength(30)]],
       descricao: [null, [Validators.maxLength(4000)]]
     })
+
+    this.comentarioForm = this.fb.group({
+      descricao: [null, Validators.required]
+    })
   }
 
   obterEquipamentoDetalhes(){
@@ -87,6 +96,7 @@ export class EquipamentosEditarComponent implements OnInit {
       this.equipamento = equipamento;
       this.equipamentoForm.patchValue(equipamento);
       this.licencasDataSource = new MatTableDataSource(equipamento.licencas);
+      this.comentarios = equipamento.comentarios.reverse();
 
       //Vínculo do Colaborador ID-Nome para exibição do AutoComplete
       const colaborador = {
@@ -217,6 +227,46 @@ export class EquipamentosEditarComponent implements OnInit {
               this.notificacoesService.notificarErro(error.error.errors[0]);
             }else {
               this.notificacoesService.notificarErro('Não foi possivel excluir a licença. Tente novamente mais tarde.');
+            }
+          });
+      }
+   });
+  }
+
+  adicionarComentario(){
+    const comentario = {
+      equipamentoId: this.equipamentoId,
+      dataComentario: new Date(),
+      descricao: this.comentarioForm.controls['descricao'].value
+    }
+    this.equipamentosService.adicionarComentario(this.equipamentoId, comentario).subscribe(
+      (sucess) => {
+        this.notificacoesService.notificarSucesso('Comentário adicionado com sucesso!');
+        this.comentarioForm.reset();
+        this.obterEquipamentoDetalhes();
+      },
+      (error) => {
+        if(error.status == 400){
+          this.notificacoesService.notificarErro(error.error.errors[0]);
+        }else {
+          this.notificacoesService.notificarErro('Não foi possivel adicionar o comentário. Tente novamente mais tarde.');
+        }
+      });
+  }
+
+  excluirComentario(comentario: Comentario){
+    this.notificacoesService.addConfirmacao(`Tem certeza que deseja excluir o comentario do usuário ${comentario.nomeUsuario} ?`).subscribe((estaConfirmado) => {
+      if(estaConfirmado){
+        this.equipamentosService.excluirComentario(comentario.id).subscribe(
+          (sucess) => {
+            this.notificacoesService.notificarSucesso('Comentário excluído com sucesso!');
+            this.obterEquipamentoDetalhes();
+          },
+          (error) => {
+            if(error.status == 400){
+              this.notificacoesService.notificarErro(error.error.errors[0]);
+            }else {
+              this.notificacoesService.notificarErro('Não foi possivel excluir o comentário. Tente novamente mais tarde.');
             }
           });
       }

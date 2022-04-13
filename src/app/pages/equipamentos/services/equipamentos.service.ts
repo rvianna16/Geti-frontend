@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { BaseResponse } from 'src/app/shared/models/base-response';
 import { environment } from 'src/environments/environment';
+import { Comentario } from '../models/comentario';
 import { Equipamento } from '../models/equipamento';
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,18 @@ export class EquipamentosService {
     const url = `${this.apiUrl}equipamentos/${id}`;
 
     return this.http.delete<void>(url);
+  }
+
+  adicionarComentario(id: string, comentario: Comentario): Observable<void> {
+    const url = `${this.apiUrl}equipamentos/${id}/comentario`
+
+    return this.http.post<void>(url, comentario)
+  }
+
+  excluirComentario(id: string): Observable<void> {
+    const url = `${this.apiUrl}equipamentos/comentario/${id}`
+
+    return this.http.delete<void>(url);
+
   }
 }

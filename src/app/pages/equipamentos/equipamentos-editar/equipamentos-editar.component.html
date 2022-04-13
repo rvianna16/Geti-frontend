@@ -138,43 +138,65 @@
       <app-button *ngIf="!equipamentoId" label="Salvar" [disabled]="equipamentoForm.invalid" (onClick)="salvarEquipamento()"></app-button>
       <app-button *ngIf="equipamentoId" label="Alterar" [disabled]="equipamentoForm.invalid" (onClick)="alterarEquipamento()"></app-button>
     </form>
-
-    <ng-container *ngIf="equipamentoId">
-      <h3>{{licencasDataSource.filteredData.length ? 'Licenças' : 'Não há licenças' }}</h3>
-      <app-button label="Adicionar Licença" icon="add_circle" (onClick)="vincularLicenca()"></app-button>
-      <table *ngIf="licencasDataSource.filteredData.length" mat-table [dataSource]="licencasDataSource" class="mat-elevation-z1 w-1/3 mt-6 whitespace-nowrap">
-
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
-            Nome
-          </th>
-          <td mat-cell *matCellDef="let licenca" class="pr-6"> {{ licenca.nome }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="chave">
-          <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
-            Chave
-          </th>
-          <td mat-cell *matCellDef="let licenca" class="pr-6"> {{ licenca.chave }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="software">
-          <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
-            Software
-          </th>
-          <td mat-cell *matCellDef="let licenca" class="pr-6"> {{ licenca.software }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="excluir">
-          <th mat-header-cell *matHeaderCellDef class="table-th pr-6"></th>
-          <td mat-cell *matCellDef="let licenca" class="pr-6">
-            <mat-icon class="text-secondary cursor-pointer" matTooltip="Excluir" matTooltipPosition="right" (click)="desvincularLicenca(licenca)">delete</mat-icon>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </ng-container>
   </div>
+
+  <ng-container *ngIf="equipamentoId">
+    <h3>{{licencasDataSource.filteredData.length ? 'Licenças' : 'Não há licenças' }}</h3>
+    <app-button label="Adicionar Licença" icon="add_circle" (onClick)="vincularLicenca()"></app-button>
+    <table *ngIf="licencasDataSource.filteredData.length" mat-table [dataSource]="licencasDataSource" class="mat-elevation-z1 w-1/3 mt-6 whitespace-nowrap">
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
+          Nome
+        </th>
+        <td mat-cell *matCellDef="let licenca" class="pr-6"> {{ licenca.nome }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="chave">
+        <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
+          Chave
+        </th>
+        <td mat-cell *matCellDef="let licenca" class="pr-6"> {{ licenca.chave }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="software">
+        <th mat-header-cell *matHeaderCellDef class="table-th pr-6">
+          Software
+        </th>
+        <td mat-cell *matCellDef="let licenca" class="pr-6"> {{ licenca.software }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="excluir">
+        <th mat-header-cell *matHeaderCellDef class="table-th pr-6"></th>
+        <td mat-cell *matCellDef="let licenca" class="pr-6">
+          <mat-icon class="text-secondary cursor-pointer" matTooltip="Excluir" matTooltipPosition="right" (click)="desvincularLicenca(licenca)">delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-container>
+
+  <ng-container *ngIf="equipamentoId">
+    <h3>Comentários</h3>
+    <div class="w-2/3 p-5 bg-light rounded-md mat-elevation-z1" [formGroup]="comentarioForm">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput class="h-40" formControlName="descricao"></textarea>
+      </mat-form-field>
+      <app-button [disabled]="comentarioForm.invalid" class="block mb-6" label="Adicionar comentário" (onClick)="adicionarComentario()"></app-button>
+
+    <div class="flex flex-col gap-5">
+      <div *ngFor="let comentario of comentarios" class="w-full p-5 bg-light-dark rounded-md mat-elevation-z1">
+        <div class="flex items-center">
+          <h4 class="mr-4"> {{ comentario.nomeUsuario }}</h4>
+          <span class="opacity-70"> {{ comentario.dataComentario | date}}</span>
+          <mat-icon class="text-secondary ml-auto cursor-pointer" matTooltip="Excluir comentário" (click)="excluirComentario(comentario)">delete</mat-icon>
+        </div>
+        <p> {{ comentario.descricao }}</p>
+      </div>
+    </div>
+    </div>
+  </ng-container>
 </div>
