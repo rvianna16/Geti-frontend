@@ -58,11 +58,13 @@ export class LicencasEditarComponent implements OnInit {
     this.licencaForm = this.fb.group({
       nome: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       chave: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-      dataExpiracao: [null, Validators.required],
+      dataExpiracao: [null],
+      fornecedor: [null, Validators.maxLength(200)],
       quantidade: [0],
       disponivel: {value: 0, disabled: true},
       softwareId: [null, Validators.required],
-      ativo: [true]
+      ativo: [true],
+      descricao: [null, Validators.maxLength(2000)]
     })
   }
 

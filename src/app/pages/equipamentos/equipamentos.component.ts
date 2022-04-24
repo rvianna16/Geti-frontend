@@ -1,12 +1,13 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavigationExtras, Router } from '@angular/router';
+
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { Equipamento } from './models/equipamento';
-
 import { EquipamentosService } from './services/equipamentos.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-equipamentos',
@@ -17,6 +18,7 @@ export class EquipamentosComponent implements OnInit {
   displayedColumns: string[] = ['patrimonio', 'nomeColaborador', 'tipoEquipamento', 'dataAquisicao', 'statusEquipamento', 'opcoes'];
   equipamentosDataSource = new MatTableDataSource<Equipamento>();
   equipamentos: Equipamento[] = [];
+  @ViewChild('table') table!: ElementRef;
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
@@ -92,4 +94,13 @@ export class EquipamentosComponent implements OnInit {
       }
    });
   }
+
+  exportAsExcel(){
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);//converts a DOM TABLE element to a worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Equipamentos');
+
+    /* save to file */
+    XLSX.writeFile(wb, 'equipamentos.xlsx');
+    }
 }

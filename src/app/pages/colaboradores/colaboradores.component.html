@@ -1,13 +1,17 @@
 <div class="p-10">
   <div class="flex justify-between">
     <h2>Colaboradores</h2>
-    <app-button label="Novo Colaborador" icon="add_circle" class="-mr-2" (click)="adicionarColaborador()" [paddingY]="true"></app-button>
+    <div>
+      <app-button label="Novo Colaborador" icon="add_circle" (click)="adicionarColaborador()" [paddingY]="true"></app-button>
+      <app-button label="Exportar" icon="get_app" class="-mr-2" [paddingY]="true" (onClick)="exportAsExcel()"></app-button>
+    </div>
   </div>
 
     <div class="w-full bg-light p-5 rounded-t-xl mat-elevation-z1">
       <app-search label="Buscar Colaborador" class="no-margin" (onSearch)="obterColaboradores($event)"></app-search>
     </div>
-    <table mat-table [dataSource]="colaboradoresDataSource" matSort (matSortChange)="announceSortChange($event)"
+    <div class="overflow-y-auto"  #table>
+      <table mat-table [dataSource]="colaboradoresDataSource" matSort (matSortChange)="announceSortChange($event)"
     class="mat-elevation-z1 w-full">
 
     <ng-container matColumnDef="nome">
@@ -45,6 +49,6 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
+      </table>
+    </div>
 </div>

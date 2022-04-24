@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,6 +9,7 @@ import { NotificacoesService } from 'src/app/shared/services/notificacoes.servic
 import { ModalNovoColaboradorComponent } from './modais/modal-novo-colaborador/modal-novo-colaborador.component';
 import { Colaborador } from './models/colaborador';
 import { ColaboradoresService } from './services/colaboradores.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-colaboradores',
@@ -18,6 +19,7 @@ import { ColaboradoresService } from './services/colaboradores.service';
 export class ColaboradoresComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'email', 'opcoes'];
   colaboradoresDataSource = new MatTableDataSource<Colaborador>();
+  @ViewChild('table') table!: ElementRef;
 
   constructor(
     private router: Router,
@@ -94,4 +96,13 @@ export class ColaboradoresComponent implements OnInit {
 
     this.router.navigate(['colaboradores/editar'], {state: navigationExtras});
   }
+
+  exportAsExcel(){
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);//converts a DOM TABLE element to a worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Colaboradores');
+
+    /* save to file */
+    XLSX.writeFile(wb, 'colaboradores.xlsx');
+    }
 }

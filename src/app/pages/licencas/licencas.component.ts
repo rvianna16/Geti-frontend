@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavigationExtras, Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { NotificacoesService } from 'src/app/shared/services/notificacoes.servic
 
 import { Licenca } from './models/licencas';
 import { LicencasService } from './services/licencas.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-licencas',
@@ -17,6 +18,7 @@ export class LicencasComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'chave', 'software', 'quantidade', 'disponivel', 'ativo', 'opcoes'];
   licencasDataSource = new MatTableDataSource<Licenca>();
   licencas: Licenca[] = [];
+  @ViewChild('table') table!: ElementRef;
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
@@ -83,5 +85,14 @@ export class LicencasComponent implements OnInit {
       }
    });
   }
+
+  exportAsExcel(){
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);//converts a DOM TABLE element to a worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Licenças');
+
+    /* save to file */
+    XLSX.writeFile(wb, 'licencas.xlsx');
+    }
 }
 
