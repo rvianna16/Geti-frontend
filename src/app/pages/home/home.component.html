@@ -4,28 +4,28 @@
   <div class="grid grid-cols-1 gap-10 w-full lg:w-1/2 md:grid-cols-2">
     <div class="w-full bg-primary rounded-t-lg text-center">
       <h3 class="text-light m-0 p-4">Colaboradores</h3>
-      <div class="bg-light p-5 text-2xl">
+      <div class="bg-light p-5 text-2xl cursor-pointer" (click)="visualizarColaboradores()">
         <app-animated-digit [digit]="contagens.colaboradores" [duration]="1200"></app-animated-digit>
       </div>
     </div>
 
     <div class="w-full bg-primary rounded-t-lg text-center">
       <h3 class="text-light m-0 p-4">Equipamentos</h3>
-      <div class="bg-light p-5 text-2xl">
+      <div class="bg-light p-5 text-2xl cursor-pointer" (click)="visualizarEquipamentos()">
         <app-animated-digit [digit]="contagens.equipamentos" [duration]="1200"></app-animated-digit>
       </div>
     </div>
 
     <div class="w-full bg-primary rounded-t-lg text-center">
       <h3 class="text-light m-0 p-4">Licenças</h3>
-      <div class="bg-light p-5 text-2xl">
+      <div class="bg-light p-5 text-2xl cursor-pointer" (click)="visualizarLicencas()">
         <app-animated-digit [digit]="contagens.licencas" [duration]="1200"></app-animated-digit>
       </div>
     </div>
 
     <div class="w-full bg-primary rounded-t-lg text-center">
       <h3 class="text-light m-0 p-4">Softwares</h3>
-      <div class="bg-light p-5 text-2xl">
+      <div class="bg-light p-5 text-2xl cursor-pointer" (click)="visualizarSoftwares()">
         <app-animated-digit [digit]="contagens.softwares" [duration]="1200"></app-animated-digit>
       </div>
     </div>
