@@ -60,5 +60,4 @@ export class SidenavComponent implements OnInit {
   toggleLink() {
     this.showDropdownMenu = !this.showDropdownMenu;
   }
-
 }

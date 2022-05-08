@@ -10,7 +10,7 @@
       <mat-icon matSuffix class="text-primary">search</mat-icon>
     </mat-form-field> -->
 
-    <div class="flex items-center font-medium ">
+    <div class="flex items-center font-medium">
       <div class="flex">
         <mat-icon class="text-primary mr-1">account_circle</mat-icon>
         {{ nomeUsuario }}
@@ -21,7 +21,7 @@
   </div>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="72" class="sidenav">
+    <mat-sidenav opened="true" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="72" class="sidenav">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="mat-sidenav-content">
