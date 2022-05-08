@@ -24,7 +24,7 @@
       <div class="flex">
         <mat-form-field appearance="outline" class="w-1/2 mr-2">
           <mat-label>Quantidade</mat-label>
-          <input matInput formControlName="quantidade">
+          <input matInput formControlName="quantidade" mask="0{6}" [validation]="false">
           <mat-error>
             <app-invalid-state [control]="licencaForm.controls['quantidade']" fieldName="Quantidade"></app-invalid-state>
           </mat-error>
@@ -62,6 +62,7 @@
             <mat-option *ngFor="let software of softwaresFiltrados | async" [value]="software">
               {{ software.nome }}
             </mat-option>
+            <mat-option *ngIf="softwares.length == 0" disabled>Não há softwares cadastrados</mat-option>
           </mat-autocomplete>
           <mat-error>
             <app-invalid-state [control]="licencaForm.controls['softwareId']" fieldName="Software"></app-invalid-state>

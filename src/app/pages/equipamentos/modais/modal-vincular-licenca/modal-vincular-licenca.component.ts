@@ -7,6 +7,7 @@ import { Licenca } from 'src/app/pages/licencas/models/licencas';
 import { LicencasService } from 'src/app/pages/licencas/services/licencas.service';
 import { Software } from 'src/app/pages/softwares/models/software';
 import { SoftwaresService } from 'src/app/pages/softwares/services/softwares.service';
+import { RequireMatch } from 'src/app/shared/globals';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 
 @Component({
@@ -39,8 +40,8 @@ export class ModalVincularLicencaComponent implements OnInit {
 
   inicializarFormulario(){
     this.vincularLicencaForm = this.fb.group({
-      softwareId: [null, Validators.required],
-      licencaId: [null, Validators.required]
+      softwareId: [null, [Validators.required, RequireMatch]],
+      licencaId: [null, [Validators.required, RequireMatch]]
     })
 
     this.vincularLicencaForm.controls['licencaId'].disable();

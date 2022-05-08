@@ -18,6 +18,7 @@ import { Licenca } from '../../licencas/models/licencas';
 import { LicencasService } from '../../licencas/services/licencas.service';
 import * as moment from 'moment';
 import { Comentario } from '../models/comentario';
+import { RequireMatch } from 'src/app/shared/globals';
 
 @Component({
   selector: 'app-equipamentos-editar',
@@ -77,7 +78,7 @@ export class EquipamentosEditarComponent implements OnInit {
       dataAquisicao: [null, [Validators.required]],
       notaFiscal: [null],
       statusEquipamento: [null, [Validators.required]],
-      colaboradorId: [null, [Validators.required]],
+      colaboradorId: [null, [Validators.required, RequireMatch]],
       modelo: [null, [Validators.maxLength(30)]],
       processador: [null, [Validators.maxLength(100)]],
       armazenamento: [null, [Validators.maxLength(100)]],

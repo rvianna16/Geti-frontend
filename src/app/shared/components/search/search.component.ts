@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   template: `
   <mat-form-field appearance="outline" class="w-full">
     <mat-label>{{ label }}</mat-label>
-    <input matInput [(ngModel)]="valorInput" (input)="buscar()">
+    <input matInput [(ngModel)]="valorInput" (input)="buscar()" autocomplete="off">
     <mat-icon matSuffix class="text-primary">search</mat-icon>
   </mat-form-field>
   `,

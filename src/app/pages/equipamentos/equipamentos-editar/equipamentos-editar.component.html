@@ -67,6 +67,7 @@
               <mat-option *ngFor="let colaborador of colaboradoresFiltrados | async" [value]="colaborador">
                 {{ colaborador.nome }}
               </mat-option>
+              <mat-option *ngIf="colaboradores.length == 0" disabled>Não há colaboradores cadastrados</mat-option>
             </mat-autocomplete>
             <mat-error>
               <app-invalid-state [control]="equipamentoForm.controls['colaboradorId']" fieldName="Colaborador"></app-invalid-state>

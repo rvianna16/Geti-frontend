@@ -39,7 +39,8 @@ export class InvalidStateComponent implements OnInit {
       required: `${this.fieldName} deve ser preenchido`,
       minlength: `${this.fieldName} deve ter no mínimo ${Object.values(this.control.errors![this.error])[0]} caracteres`,
       maxlength: `${this.fieldName} deve ter no máximo ${Object.values(this.control.errors![this.error])[0]} caracteres`,
-      email: `${this.fieldName} deve ser válido`
+      email: `${this.fieldName} deve ser válido`,
+      incorrect: `Selecione um ${this.fieldName} válido`
     }
 
     return (VALIDATION_MESSAGES as any)[this.error];

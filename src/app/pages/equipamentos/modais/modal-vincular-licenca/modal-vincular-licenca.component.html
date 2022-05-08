@@ -10,6 +10,7 @@
       <mat-option *ngFor="let software of softwaresFiltrados | async" [value]="software" (click)="softwareSelecionado()">
         {{ software.nome }}
       </mat-option>
+      <mat-option *ngIf="softwares.length == 0" disabled>Não há softwares cadastrados</mat-option>
     </mat-autocomplete>
     <mat-error>
       <app-invalid-state [control]="vincularLicencaForm.controls['softwareId']" fieldName="Software"></app-invalid-state>
@@ -23,6 +24,7 @@
       <mat-option *ngFor="let licenca of licencasFiltrados | async" [value]="licenca">
         {{ licenca.nome }} - {{ licenca.chave }}
       </mat-option>
+      <mat-option *ngIf="licencas.length == 0" disabled>Não há licenças cadastrados</mat-option>
     </mat-autocomplete>
     <mat-error>
       <app-invalid-state [control]="vincularLicencaForm.controls['licencaId']" fieldName="Licença"></app-invalid-state>

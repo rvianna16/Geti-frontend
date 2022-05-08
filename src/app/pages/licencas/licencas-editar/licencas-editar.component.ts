@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
+import { RequireMatch } from 'src/app/shared/globals';
 
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { Equipamento } from '../../equipamentos/models/equipamento';
@@ -62,7 +63,7 @@ export class LicencasEditarComponent implements OnInit {
       fornecedor: [null, Validators.maxLength(200)],
       quantidade: [0],
       disponivel: {value: 0, disabled: true},
-      softwareId: [null, Validators.required],
+      softwareId: [null, [Validators.required, RequireMatch]],
       ativo: [true],
       descricao: [null, Validators.maxLength(2000)]
     })
