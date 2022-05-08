@@ -12,6 +12,7 @@ import { InvalidStateComponent } from './components/invalid-state/invalid-state.
 import { LoaderService } from './services/loader/loader.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './services/loader/loader-interceptor';
+import { AnimatedDigitComponent } from './components/animated-digit/animated-digit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoaderInterceptor } from './services/loader/loader-interceptor';
     LoaderComponent,
     NotificacaoComponent,
     ConfirmComponent,
-    InvalidStateComponent
+    InvalidStateComponent,
+    AnimatedDigitComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { LoaderInterceptor } from './services/loader/loader-interceptor';
     ButtonComponent,
     LoaderComponent,
     NotificacaoComponent,
-    InvalidStateComponent
+    InvalidStateComponent,
+    AnimatedDigitComponent
   ],
   providers: [
     LoaderService,

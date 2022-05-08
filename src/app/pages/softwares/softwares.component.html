@@ -9,6 +9,7 @@
 
   <div class="w-full bg-light p-5 rounded-t-xl mat-elevation-z1">
     <app-search label="Buscar Software" class="no-margin" (onSearch)="obterSoftwares($event)"></app-search>
+    <p class="mt-4 mb-0">Total: {{ softwaresDataSource.filteredData.length }} software(s)</p>
   </div>
   <div class="overflow-y-auto" #table>
     <table mat-table [dataSource]="softwaresDataSource" matSort (matSortChange)="announceSortChange($event)"
