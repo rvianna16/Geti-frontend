@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { NotificacoesService } from 'src/app/shared/services/notificacoes.service';
 import { Licenca } from '../../licencas/models/licencas';
 import { Software } from '../models/software';
@@ -94,8 +94,17 @@ export class SoftwaresEditarComponent implements OnInit {
    });
   }
 
+  visualizarLicenca(licenca: Licenca){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        id: licenca.id
+      }
+    }
+
+    this.router.navigate(['licencas/editar'], {state: navigationExtras})
+  }
+
   voltar(){
     this.router.navigate(['softwares']);
   }
-
 }
